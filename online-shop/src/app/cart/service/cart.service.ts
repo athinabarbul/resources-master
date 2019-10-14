@@ -36,4 +36,13 @@ export class CartService {
 
   }
 
+  removeProductFromCart(i:number) : void{
+    if( this.listOfCartItems[i].quantity == 1){
+      this.listOfCartItems.splice(i,1);
+    }
+    else{
+      this.listOfCartItems[i].quantity--;
+    }
+  }
+
 }
