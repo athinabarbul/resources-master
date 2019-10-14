@@ -1,13 +1,17 @@
+<div *ngIf="currentProduct">
 
 <section class="product-heading">
   <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-9">
         <h1 class="product-name">Product: {{currentProduct.name}}</h1>
       </div>
-      <div class="col-md">
+      <div class="col">
+        <button (click) = "addProductToCart()" class="btn btn-warning btn-lg  btn-product"><i class="fa fa-plus"></i></button>
+      </div>
+      <div class="col">
         <button class="btn btn-primary btn-lg  btn-product">Edit</button>
       </div>
-      <div class="col-md">
+      <div class="col">
         <button class="btn btn-danger btn-lg text-dark btn-product">Delete</button>
       </div>
   </div>
@@ -58,3 +62,8 @@
     </div>
   </div>
 </section>
+</div>
+
+<div *ngIf="!currentProduct">
+  <h1>MUIE TIE</h1>
+</div>

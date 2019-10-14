@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductModel } from '../product/product-model';
+import { ProductService } from '../product/service/product.service';
+
+import { RouterModule, Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -10,16 +13,14 @@ export class ProductListComponent implements OnInit {
 
   listOfProducts: ProductModel[] = [];
 
-  constructor() { }
+  constructor(private router: Router, private productService: ProductService) { }
 
   ngOnInit() {
-    this.listOfProducts.push(new ProductModel('Iphone X', 'Phones', 500, '', ''));
-    this.listOfProducts.push(new ProductModel('Iphone XS', 'Phones', 450, '', ''));
-    this.listOfProducts.push(new ProductModel('Iphone XS', 'Phones', 450, '', ''));
-    this.listOfProducts.push(new ProductModel('Iphone XS', 'Phones', 450, '', ''));
-    this.listOfProducts.push(new ProductModel('Iphone XS', 'Phones', 450, '', ''));
-    this.listOfProducts.push(new ProductModel('Iphone XS', 'Phones', 450, '', ''));
-    this.listOfProducts.push(new ProductModel('Iphone XS', 'Phones', 450, '', ''));
+      this.listOfProducts = this.productService.getProducts();
+  }
+
+  goToProductDetails(i: number): void{
+    this.router.navigate(['/product/' + this.listOfProducts[i].id]);
   }
 
 }

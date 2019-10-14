@@ -1,0 +1,40 @@
+
+<section class="cart-list-heading">
+  <div class="row">
+      <div class="col-md-10">
+        <h1 class="cart-name">Shopping Cart</h1>
+      </div>
+      <div class="col-md">
+        <button class="btn btn-primary btn-lg btn-product">Checkout</button>
+      </div>
+  </div>
+</section>
+
+<section class="list-of-products mx-5">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <ng-container *ngFor="let cartItem of listOfCartItems; let i=index">
+          <tr class="text-align-center">
+            <td>
+              <h2>{{cartItem.product.category}}</h2>
+            </td>
+            <td>
+              <h2>{{cartItem.product.name}}</h2>
+            </td>
+            <td>
+              <h2>{{cartItem.product.price}}</h2>
+            </td>
+            <td>
+              <h2>{{cartItem.quantity}}</h2>
+            </td>
+            <td>
+              <a><i class="fa fa-cross fa-3x"></i></a>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+
+</section>
