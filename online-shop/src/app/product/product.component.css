@@ -1,0 +1,21 @@
+
+.product-heading{
+  margin: 8rem 5rem;
+}
+
+.product-name{
+  font-size: 5rem;
+  letter-spacing: .5rem;
+  font-weight: 700;
+}
+
+.btn-product{
+  font-size: 2.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.product-details-section{
+  margin: 10rem 5rem;
+  font-size: 2rem;
+}

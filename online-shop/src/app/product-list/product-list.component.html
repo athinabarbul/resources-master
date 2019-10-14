@@ -1,0 +1,53 @@
+<!-- <table>
+  <ng-container *ngFor="let product of listOfProducts">
+    <tr>
+      <td>
+        <h2>{{product.name}}</h2>
+      </td>
+      <td>
+        <h2>{{product.price}}</h2>
+      </td>
+    </tr>
+  </ng-container>
+</table> -->
+
+
+<section class="product-list-heading">
+  <div class="row">
+      <div class="col-md-10">
+        <h1 class="product-name">Products</h1>
+      </div>
+      <div class="col-md">
+        <button class="btn btn-primary btn-lg btn-product"><i class="fa fa-shopping-cart"></i></button>
+      </div>
+      <div class="col-md">
+        <button class="btn btn-primary btn-lg btn-product">Delete</button>
+      </div>
+  </div>
+</section>
+
+<section class="list-of-products mx-5">
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <ng-container *ngFor="let product of listOfProducts">
+          <tr class="text-align-center">
+            <td>
+              <h2>{{product.category}}</h2>
+            </td>
+            <td>
+              <h2>{{product.name}}</h2>
+            </td>
+            <td>
+              <h2>{{product.price}}</h2>
+            </td>
+            <td>
+              <a href="#"><i class="fa fa-chevron-right fa-3x"></i></a>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+    </div>
+  </div>
+
+</section>
