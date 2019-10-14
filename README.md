@@ -1,2 +1,2 @@
-# resources-master
- Angular Training
+# Angular Training
+ 
