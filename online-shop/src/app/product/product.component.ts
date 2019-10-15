@@ -1,33 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductModel } from './product-model';
-
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs';
 import { CartService } from '../cart/service/cart.service';
 import { ProductService } from '../product/service/product.service';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-
+import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
 
-  currentProduct: ProductModel;
+  listOfProducts$: Observable<ProductModel[]>;
+  currentProduct: ProductModel = undefined;
+  listSubscription: Subscription;
+  id: number;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService,
-  private cartService:CartService ) { }
+  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private productService: ProductService,
+    private cartService: CartService) { }
 
   ngOnInit() {
-    let id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.listOfProducts$ = this.productService.getProducts();
 
-    this.currentProduct = this.productService.getProductById(id);
+    this.listSubscription = this.listOfProducts$.subscribe(listOfProducts => {
+      for (let product of listOfProducts) {
+        if (product.id === this.id)
+          this.currentProduct = product;
+      }
+    })
   }
 
-  addProductToCart(): void{
+  addProductToCart(): void {
     this.cartService.addProductToCart(this.currentProduct);
-    alert('Product added to cart');
+    alert('Product' + this.currentProduct.name +  'added to cart');
+  }
+
+  deleteProduct(): void {
+    this.httpClient.delete('/products/' + this.id).subscribe(response => {
+      // Here you will handle response
+    }, (error) => {
+      // Here you can handle errors
+    });
+  }
+
+  ngOnDestroy(): void{
+    if (this.listSubscription) {
+      this.listSubscription.unsubscribe();
+    }
   }
 
 }

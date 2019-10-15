@@ -23,7 +23,8 @@
               "src/favicon.ico",
               "src/assets",
               { "glob": "package.json", "input": "../", "output": "./assets/" },
-              { "glob": "products.json", "input": "./", "output": "./assets/" }
+              { "glob": "products.json", "input": "./", "output": "./assets/" },
+              { "glob": "order.json", "input": "./", "output": "./assets/" }
             ],
             "styles": [
               "src/styles.css",

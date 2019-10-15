@@ -12,18 +12,18 @@
 
 <section class="list-of-products mx-5">
   <div class="row">
-    <div class="col">
+    <div class="col" *ngIf="listOfCartItems$ | async as listOfCartItems else noData">
       <table class="table table-bordered">
         <ng-container *ngFor="let cartItem of listOfCartItems; let i=index">
           <tr class="text-align-center">
             <td>
-              <h2>{{cartItem.product.category}}</h2>
+              <h2>{{cartItem.category}}</h2>
             </td>
             <td>
-              <h2>{{cartItem.product.name}}</h2>
+              <h2>{{cartItem.name}}</h2>
             </td>
             <td>
-              <h2>{{cartItem.product.price}}</h2>
+              <h2>{{cartItem.price}}</h2>
             </td>
             <td>
               <h2>{{cartItem.quantity}}</h2>
@@ -33,6 +33,8 @@
             </td>
           </tr>
         </ng-container>
+        <ng-template #noData>No Data Available</ng-template>
+
       </table>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItemModel } from './cart-item-model'
-
+import { Observable } from 'rxjs/Observable';
 import { CartService } from './service/cart.service'
 
 @Component({
@@ -10,12 +10,19 @@ import { CartService } from './service/cart.service'
 })
 export class CartComponent implements OnInit {
 
-  listOfCartItems: CartItemModel[] = [];
+  listOfCartItems$: Observable<CartItemModel[]>;
+
+  cartList: CartItemModel[];
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.listOfCartItems = this.cartService.getCartItemList();
+    this.listOfCartItems$ = this.cartService.getProductsOrder();
+
+    this.listOfCartItems$.subscribe((data)  => {
+    this.cartList = data;
+   });
+
   }
 
   removeCartItem(i:number) : void{

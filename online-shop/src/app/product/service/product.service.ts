@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+import * as _ from 'lodash';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/do'
+
 
 import { ProductModel } from '../product-model'
 
@@ -8,33 +13,11 @@ import { ProductModel } from '../product-model'
   providedIn: 'root'
 })
 export class ProductService {
-
-  listOfProducts: ProductModel[] = [];
-
   constructor(private http: HttpClient) {
-
-    this.getJSON().subscribe(data => {
-            console.log(data);
-            for( let key in data){
-              this.listOfProducts.push(data[key]);
-            }
-        });
   }
 
-  public getJSON(): Observable<any> {
-        return this.http.get('http://localhost:4200/assets/products.json');
-    }
-
-  getProducts(): ProductModel[]{
-    return this.listOfProducts;
-  }
-
-  getProductById(id: number): ProductModel{
-      for (let product of this.listOfProducts){
-        if (product.id === id)
-          return product;
-      }
-      return undefined;
+  public getProducts(): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>('http://localhost:3000/products').map(data => _.values(data)).do(console.log);
   }
 
 }

@@ -1,0 +1,21 @@
+{
+  "0": {
+    "id": 1,
+    "name": "Notebook Basic 17",
+    "category": "Laptops",
+    "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1001.jpg",
+    "price": 1249,
+    "description": "Notebook Basic 17 with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+    "quantity": 1
+  },
+
+  "1": {
+    "id": 1,
+    "name": "Notebook Basic 17",
+    "category": "Laptodadasps",
+    "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1001.jpg",
+    "price": 1249,
+    "description": "Notebook Basic 17 with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+    "quantity": 1
+  }
+}

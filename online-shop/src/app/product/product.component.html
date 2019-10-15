@@ -1,4 +1,4 @@
-<div *ngIf="currentProduct">
+<div>
 
 <section class="product-heading">
   <div class="row">
@@ -6,13 +6,13 @@
         <h1 class="product-name">Product: {{currentProduct.name}}</h1>
       </div>
       <div class="col">
-        <button (click) = "addProductToCart()" class="btn btn-warning btn-lg  btn-product"><i class="fa fa-plus"></i></button>
+        <button routerLink="/product-list" (click) = "addProductToCart()" class="btn btn-warning btn-lg  btn-product"><i class="fa fa-plus"></i></button>
       </div>
       <div class="col">
         <button class="btn btn-primary btn-lg  btn-product">Edit</button>
       </div>
       <div class="col">
-        <button class="btn btn-danger btn-lg text-dark btn-product">Delete</button>
+        <button  routerLink="/product-list" (click) = "deleteProduct()" class="btn btn-danger btn-lg text-dark btn-product">Delete</button>
       </div>
   </div>
 </section>
@@ -64,6 +64,4 @@
 </section>
 </div>
 
-<div *ngIf="!currentProduct">
-  <h1>MUIE TIE</h1>
-</div>
+  <!-- <ng-template #noProduct>No Data Available</ng-template> -->
