@@ -41,10 +41,10 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   deleteProduct(): void {
-    this.httpClient.delete('/products/' + this.id).subscribe(response => {
-      // Here you will handle response
+    this.httpClient.delete('http://localhost:3000/products/' + this.id).subscribe(response => {
+      console.log("deleted");
     }, (error) => {
-      // Here you can handle errors
+      console.log("nono deleted");
     });
   }
 
