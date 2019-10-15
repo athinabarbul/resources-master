@@ -1,14 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Notebook Basic 17",
-      "category": "Laptops",
-      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1001.jpg",
-      "price": 1249,
-      "description": "Notebook Basic 17 with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro"
-    },
-    {
       "id": 2,
       "name": "Notebook Basic 18",
       "category": "Laptops",
@@ -31,14 +23,6 @@
       "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1010.jpg",
       "price": 1999,
       "description": "Notebook Professional 15 with 2,80 GHz quad core, 15\" Multitouch LCD, 8 GB DDR3 RAM, 500 GB SSD - DVD-Writer (DVD-R/+R/-RW/-RAM),Windows 8 Pro"
-    },
-    {
-      "id": 6,
-      "name": "Notebook Professional 17",
-      "category": "Laptops",
-      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1011.jpg",
-      "price": 2299,
-      "description": "Notebook Professional 17 with 2,80 GHz quad core, 17\" Multitouch LCD, 8 GB DDR3 RAM, 500 GB SSD - DVD-Writer (DVD-R/+R/-RW/-RAM),Windows 8 Pro"
     },
     {
       "id": 7,
@@ -376,5 +360,35 @@
       "price": 77,
       "description": "Complete package, 1 User, different Multimedia applications, playing music, watching DVDs, only with this Smart package"
     }
-  ]
+  ],
+  "cartItems": [
+    {
+      "id": 2,
+      "name": "Notebook Basic 18",
+      "category": "Laptops",
+      "price": 1570,
+      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1002.jpg",
+      "description": "Notebook Basic 18 with 2,80 GHz quad core, 18\" LCD, 8 GB DDR3 RAM, 1000 GB Hard Disc, Windows 8 Pro",
+      "quantity": 3
+    },
+    {
+      "id": 7,
+      "name": "ITelO Vault Net",
+      "category": "Accessories",
+      "price": 459,
+      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1020.jpg",
+      "description": "Digital Organizer with State-of-the-Art Encryption for Storage and Network Communications",
+      "quantity": 2
+    },
+    {
+      "id": 9,
+      "name": "Comfort Easy",
+      "category": "Accessories",
+      "price": 1679,
+      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1022.jpg",
+      "description": "32 GB Digital Assistant with high-resolution color screen",
+      "quantity": 1
+    }
+  ],
+  "orders": []
 }
