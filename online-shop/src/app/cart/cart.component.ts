@@ -26,7 +26,13 @@ export class CartComponent implements OnInit {
   }
 
   removeCartItem(i:number) : void{
+    console.log(i);
     this.cartService.removeProductFromCart(i);
+  }
+
+  completeOnlineOrder(): void{
+    alert("Order was completed!");
+    this.cartService.completeOrder();
   }
 
 }

@@ -116,48 +116,83 @@ export class CartService {
       }
     }
 
-
-      //
-      // const headers = new HttpHeaders()
-      //   .set("Content-Type", "application/json");
-      //
-      // this.http.post('http://localhost:3000/cartItems',
-      //   {
-      //
-      //       "id": item.id,
-      //       "name": item.name,
-      //       "category": item.category,
-      //       "price": item.price,
-      //       "image": item.image,
-      //       "description": item.description,
-      //       "quantity": item.quantity
-      //   },
-      //   { headers })
-      //   .subscribe(
-      //     val => {
-      //       console.log("PUT call successful value returned in body",
-      //         val);
-      //     },
-      //     response => {
-      //       console.log("PUT call in error", response);
-      //     },
-      //     () => {
-      //       console.log("The PUT observable is now completed.");
-      //     }
-      //   );
   }
 
   removeProductFromCart(i: number): void {
-    // if( this.listOfCartItems[i].quantity == 1){
-    //   this.listOfCartItems.splice(i,1);
-    // }
-    // else{
-    //   this.listOfCartItems[i].quantity--;
-    // }
+
+    console.log("Cart item" + this.listOfCartItems[i]);
+
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json");
+
+    if( this.listOfCartItems[i].quantity == 1){
+      console.log(this.listOfCartItems[i]);
+      this.listOfCartItems.splice(i,1);
+      this.http.delete('http://localhost:3000/cartItems/' + this.listOfCartItems[i].id).subscribe(response => {
+        console.log("deleted");
+      }, (error) => {
+        console.log("nono deleted");
+      });
+    }
+    else{
+      this.listOfCartItems[i].quantity--;
+      this.http.patch('http://localhost:3000/cartItems/' + this.listOfCartItems[i].id,
+        {
+            "quantity": this.listOfCartItems[i].quantity
+        },
+        { headers })
+        .subscribe(
+          val => {
+            console.log("patch call successful value returned in body",
+              val);
+          },
+          response => {
+            console.log("patch call in error", response);
+          },
+          () => {
+            console.log("The patch observable is now completed.");
+          }
+        );
+    }
+  }
+
+  completeOrder(): void{
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json");
+
+      let orderItem = this.listOfCartItems;
+
+      this.http.post('http://localhost:3000/orders',
+        {
+            orderItem
+        },
+        { headers })
+        .subscribe(
+          val => {
+            console.log("POST call successful value returned in body",
+              val);
+          },
+          response => {
+            console.log("POST call in error", response);
+          },
+          () => {
+            console.log("The PUT observable is now completed.");
+          }
+        );
+
+        for(let item of this.listOfCartItems){
+          this.http.delete('http://localhost:3000/cartItems/' + item.id).subscribe(response => {
+            console.log("deleted");
+          }, (error) => {
+            console.log("nono deleted");
+          });
+
+        }
+
   }
 
   public getProductsOrder(): Observable<CartItemModel[]> {
-    return this.http.get<CartItemModel[]>('http://localhost:3000/cartItems').map(data => _.values(data));
+    return this.http.get<CartItemModel[]>('http://localhost:3000/cartItems').map(data => _.values(data)).do(console.log);
 
   }
 

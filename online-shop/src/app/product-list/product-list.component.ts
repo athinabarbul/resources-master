@@ -27,7 +27,6 @@ export class ProductListComponent implements OnInit{
 
      this.listOfProductsObserv$.subscribe((data)  => {
      this.listOfProducts = data;
-     debugger
     });
   }
 
