@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { CartService } from '../cart/service/cart.service';
 import { ProductService } from '../product/service/product.service';
 import { ActivatedRoute } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 
@@ -21,7 +22,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   id: number;
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private productService: ProductService,
-    private cartService: CartService) { }
+    private cartService: CartService, private router: Router) { }
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
@@ -46,6 +47,10 @@ export class ProductComponent implements OnInit, OnDestroy {
     }, (error) => {
       console.log("nono deleted");
     });
+  }
+
+  goToProductEdit(i: number, currentProduct: ProductModel): void {
+    this.router.navigate(['/edit-product/' + currentProduct.id]);
   }
 
   ngOnDestroy(): void{

@@ -1,0 +1,24 @@
+.edit-heading{
+  margin: 8rem 5rem;
+}
+
+.edit-name{
+  font-size: 5rem;
+  letter-spacing: .5rem;
+  font-weight: bold;
+}
+
+.edit-form{
+  margin: 8rem 5rem;
+}
+
+.edit-buttons{
+  margin: 8rem 5rem;
+
+}
+
+.btn-product{
+  font-size: 2.5rem;
+  text-align: center;
+  width: 100%;
+}

@@ -1,38 +1,6 @@
 {
   "products": [
     {
-      "id": 3,
-      "name": "Notebook Basic 19",
-      "category": "Laptops",
-      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1003.jpg",
-      "price": 1650,
-      "description": "Notebook Basic 19 with 2,80 GHz quad core, 19\" LCD, 8 GB DDR3 RAM, 1000 GB Hard Disc, Windows 8 Pro"
-    },
-    {
-      "id": 5,
-      "name": "Notebook Professional 15",
-      "category": "Accessories",
-      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1010.jpg",
-      "price": 1999,
-      "description": "Notebook Professional 15 with 2,80 GHz quad core, 15\" Multitouch LCD, 8 GB DDR3 RAM, 500 GB SSD - DVD-Writer (DVD-R/+R/-RW/-RAM),Windows 8 Pro"
-    },
-    {
-      "id": 7,
-      "name": "ITelO Vault Net",
-      "category": "Accessories",
-      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1020.jpg",
-      "price": 459,
-      "description": "Digital Organizer with State-of-the-Art Encryption for Storage and Network Communications"
-    },
-    {
-      "id": 8,
-      "name": "ITelO Vault SAT",
-      "category": "Accessories",
-      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1021.jpg",
-      "price": 149,
-      "description": "Digital Organizer with State-of-the-Art Encryption for Storage and Secure Stellite Link"
-    },
-    {
       "id": 9,
       "name": "Comfort Easy",
       "category": "Accessories",
@@ -368,6 +336,29 @@
         }
       ],
       "id": 1
+    },
+    {
+      "orderItem": [
+        {
+          "id": 12,
+          "name": "Ergo Screen E-II",
+          "category": "Flat Screen Monitors",
+          "price": 285,
+          "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1031.jpg",
+          "description": "Optimum Hi-Resolution max. 1920 x 1200 @ 85Hz, Dot Pitch: 0.26mm",
+          "quantity": 1
+        },
+        {
+          "id": 11,
+          "name": "Ergo Screen E-I",
+          "category": "Flat Screen Monitors",
+          "price": 230,
+          "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1030.jpg",
+          "description": "Optimum Hi-Resolution max. 1920 x 1080 @ 85Hz, Dot Pitch: 0.27mm",
+          "quantity": 1
+        }
+      ],
+      "id": 2
     }
   ]
 }
