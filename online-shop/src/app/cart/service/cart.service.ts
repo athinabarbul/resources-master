@@ -17,7 +17,7 @@ export class CartService {
 
   constructor(private http: HttpClient) {
     this.cartItemsList$ = this.getProductsOrder();
-    this.cartItemsList$.subscribe((data) => {this.listOfCartItems = data;});
+    this.cartItemsList$.subscribe((data) => { this.listOfCartItems = data; });
   }
 
 
@@ -31,13 +31,13 @@ export class CartService {
 
       this.http.post('http://localhost:3000/cartItems',
         {
-            "id": product.id,
-            "name": product.name,
-            "category": product.category,
-            "price": product.price,
-            "image": product.image,
-            "description": product.description,
-            "quantity": 1
+          "id": product.id,
+          "name": product.name,
+          "category": product.category,
+          "price": product.price,
+          "image": product.image,
+          "description": product.description,
+          "quantity": 1
         },
         { headers })
         .subscribe(
@@ -62,13 +62,13 @@ export class CartService {
 
           this.http.put('http://localhost:3000/cartItems/' + product.id,
             {
-                "id": product.id,
-                "name": product.name,
-                "category": product.category,
-                "price": product.price,
-                "image": product.image,
-                "description": product.description,
-                "quantity": cartItem.quantity
+              "id": product.id,
+              "name": product.name,
+              "category": product.category,
+              "price": product.price,
+              "image": product.image,
+              "description": product.description,
+              "quantity": cartItem.quantity
             },
             { headers })
             .subscribe(
@@ -92,13 +92,13 @@ export class CartService {
 
         this.http.post('http://localhost:3000/cartItems',
           {
-              "id": product.id,
-              "name": product.name,
-              "category": product.category,
-              "price": product.price,
-              "image": product.image,
-              "description": product.description,
-              "quantity": 1
+            "id": product.id,
+            "name": product.name,
+            "category": product.category,
+            "price": product.price,
+            "image": product.image,
+            "description": product.description,
+            "quantity": 1
           },
           { headers })
           .subscribe(
@@ -116,29 +116,31 @@ export class CartService {
       }
     }
 
+    console.log("Cart item " + this.listOfCartItems);
+
   }
 
   removeProductFromCart(i: number): void {
 
-    console.log("Cart item" + this.listOfCartItems[i]);
+    console.log("Cart item " + this.listOfCartItems[i]);
 
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
 
-    if( this.listOfCartItems[i].quantity == 1){
+    if (this.listOfCartItems[i].quantity == 1) {
       console.log(this.listOfCartItems[i]);
-      this.listOfCartItems.splice(i,1);
       this.http.delete('http://localhost:3000/cartItems/' + this.listOfCartItems[i].id).subscribe(response => {
         console.log("deleted");
       }, (error) => {
         console.log("nono deleted");
       });
+      this.listOfCartItems.splice(i, 1);
     }
-    else{
+    else {
       this.listOfCartItems[i].quantity--;
       this.http.patch('http://localhost:3000/cartItems/' + this.listOfCartItems[i].id,
         {
-            "quantity": this.listOfCartItems[i].quantity
+          "quantity": this.listOfCartItems[i].quantity
         },
         { headers })
         .subscribe(
@@ -156,38 +158,38 @@ export class CartService {
     }
   }
 
-  completeOrder(): void{
+  completeOrder(): void {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
 
-      let orderItem = this.listOfCartItems;
+    let orderItem = this.listOfCartItems;
 
-      this.http.post('http://localhost:3000/orders',
-        {
-            orderItem
+    this.http.post('http://localhost:3000/orders',
+      {
+        orderItem
+      },
+      { headers })
+      .subscribe(
+        val => {
+          console.log("POST call successful value returned in body",
+            val);
         },
-        { headers })
-        .subscribe(
-          val => {
-            console.log("POST call successful value returned in body",
-              val);
-          },
-          response => {
-            console.log("POST call in error", response);
-          },
-          () => {
-            console.log("The PUT observable is now completed.");
-          }
-        );
-
-        for(let item of this.listOfCartItems){
-          this.http.delete('http://localhost:3000/cartItems/' + item.id).subscribe(response => {
-            console.log("deleted");
-          }, (error) => {
-            console.log("nono deleted");
-          });
-
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The PUT observable is now completed.");
         }
+      );
+
+    for (let item of this.listOfCartItems) {
+      this.http.delete('http://localhost:3000/cartItems/' + item.id).subscribe(response => {
+        console.log("deleted");
+      }, (error) => {
+        console.log("nono deleted");
+      });
+
+    }
 
   }
 

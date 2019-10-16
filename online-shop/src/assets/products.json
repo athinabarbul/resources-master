@@ -1,14 +1,6 @@
 {
   "products": [
     {
-      "id": 2,
-      "name": "Notebook Basic 18",
-      "category": "Laptops",
-      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1002.jpg",
-      "price": 1570,
-      "description": "Notebook Basic 18 with 2,80 GHz quad core, 18\" LCD, 8 GB DDR3 RAM, 1000 GB Hard Disc, Windows 8 Pro"
-    },
-    {
       "id": 3,
       "name": "Notebook Basic 19",
       "category": "Laptops",
@@ -366,21 +358,12 @@
     {
       "orderItem": [
         {
-          "id": 2,
-          "name": "Notebook Basic 18",
+          "id": 3,
+          "name": "Notebook Basic 19",
           "category": "Laptops",
-          "price": 1570,
-          "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1002.jpg",
-          "description": "Notebook Basic 18 with 2,80 GHz quad core, 18\" LCD, 8 GB DDR3 RAM, 1000 GB Hard Disc, Windows 8 Pro",
-          "quantity": 1
-        },
-        {
-          "id": 5,
-          "name": "Notebook Professional 15",
-          "category": "Accessories",
-          "price": 1999,
-          "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1010.jpg",
-          "description": "Notebook Professional 15 with 2,80 GHz quad core, 15\" Multitouch LCD, 8 GB DDR3 RAM, 500 GB SSD - DVD-Writer (DVD-R/+R/-RW/-RAM),Windows 8 Pro",
+          "price": 1650,
+          "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1003.jpg",
+          "description": "Notebook Basic 19 with 2,80 GHz quad core, 19\" LCD, 8 GB DDR3 RAM, 1000 GB Hard Disc, Windows 8 Pro",
           "quantity": 1
         }
       ],
