@@ -1,0 +1,47 @@
+<section class="add-heading">
+  <div class="row">
+      <div class="col">
+        <h1 class="add-name">Add product</h1>
+      </div>
+  </div>
+</section>
+
+<section class="add-form">
+  <form [formGroup]="addProductForm" required>
+  <div class="form-group">
+    <label for="productName">Name</label>
+    <input formControlName="name" type="text" class="form-control form-control-lg" id="productName" aria-describedby="emailHelp" required>
+  </div>
+  <div class="form-group">
+    <label for="productCategory">Category</label>
+    <input formControlName="category" type="text" class="form-control form-control-lg" id="productCategory" required>
+  </div>
+  <div class="form-group">
+    <label for="productImageUrl">Image</label>
+    <input formControlName="image" type="text" class="form-control form-control-lg" id="productImageUrl" required>
+  </div>
+  <div class="form-group">
+    <label for="productPrice">Price</label>
+    <input formControlName="price" type="number" class="form-control form-control-lg" id="productPrice" required>
+  </div>
+  <div class="form-group">
+    <textarea formControlName="description" class="form-control form-control-lg" rows="8" cols="245" required ></textarea>
+  </div>
+</form>
+<p>Form value: {{ addProductForm.value | json }}</p>
+<p>Form status: {{ addProductForm.status | json }}</p>
+</section>
+
+<section class="add-buttons">
+  <div class="row align-items-end">
+    <div class="col-md-10">
+      &nbsp;
+    </div>
+    <div class="col-md">
+      <button routerLink="/product-list" type="submit" class="btn btn-light btn-product btn-lg">Cancel</button>
+    </div>
+    <div class="col-md">
+      <button  routerLink="/product-list" (click)="saveProductDetails()" type="submit" class="btn btn-primary btn-product btn-lg">Save</button>
+    </div>
+  </div>
+</section>
