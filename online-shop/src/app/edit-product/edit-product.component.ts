@@ -8,6 +8,7 @@ import { ProductModel } from '../product/product-model';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
@@ -44,11 +45,11 @@ export class EditProductComponent implements OnInit {
 
   createForm() {
     this.editProductForm = this.fb.group ({
-       name: [''],
-       category: [''],
-       image: [''],
-       price: [''],
-       description: ['']
+       name: ['',Validators.required],
+       category: ['',Validators.required],
+       image: ['',Validators.required],
+       price: ['',Validators.required],
+       description: ['',Validators.required]
     });
   }
 

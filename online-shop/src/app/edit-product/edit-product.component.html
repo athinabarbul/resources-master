@@ -7,27 +7,29 @@
 </section>
 
 <section class="edit-form">
-  <form [formGroup]="editProductForm">
+  <form [formGroup]="editProductForm" required>
   <div class="form-group">
     <label for="productName">Name</label>
-    <input formControlName="name" type="text" class="form-control form-control-lg" id="productName" aria-describedby="emailHelp" placeholder="{{currentProduct.name}}">
+    <input formControlName="name" type="text" class="form-control form-control-lg" id="productName" aria-describedby="emailHelp" placeholder="{{currentProduct.name}}" required>
   </div>
   <div class="form-group">
     <label for="productCategory">Category</label>
-    <input formControlName="category" type="text" class="form-control form-control-lg" id="productCategory" placeholder="{{currentProduct.category}}">
+    <input formControlName="category" type="text" class="form-control form-control-lg" id="productCategory" placeholder="{{currentProduct.category}}" required>
   </div>
   <div class="form-group">
     <label for="productImageUrl">Image</label>
-    <input formControlName="image" type="text" class="form-control form-control-lg" id="productImageUrl" placeholder="{{currentProduct.image}}">
+    <input formControlName="image" type="text" class="form-control form-control-lg" id="productImageUrl" placeholder="{{currentProduct.image}}" required>
   </div>
   <div class="form-group">
     <label for="productPrice">Price</label>
-    <input formControlName="price" type="text" class="form-control form-control-lg" id="productPrice" placeholder="{{currentProduct.price}}">
+    <input formControlName="price" type="number" class="form-control form-control-lg" id="productPrice" placeholder="{{currentProduct.price}}" required>
   </div>
   <div class="form-group">
-    <textarea formControlName="description" class="form-control form-control-lg" rows="8" cols="245" placeholder="{{currentProduct.description}}"></textarea>
+    <textarea formControlName="description" class="form-control form-control-lg" rows="8" cols="245" placeholder="{{currentProduct.description}}" required></textarea>
   </div>
 </form>
+<p>Form value: {{ editProductForm.value | json }}</p>
+<p>Form status: {{ editProductForm.status | json }}</p>
 </section>
 
 <section class="edit-buttons">
