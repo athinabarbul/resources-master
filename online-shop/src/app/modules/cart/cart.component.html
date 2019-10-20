@@ -12,9 +12,9 @@
 
 <section class="list-of-products mx-5">
   <div class="row">
-    <div class="col" *ngIf="listOfCartItems$ | async as listOfCartItems else noData">
+    <div class="col">
       <table class="table table-bordered">
-        <ng-container *ngFor="let cartItem of listOfCartItems; let i=index">
+        <ng-container *ngFor="let cartItem of cartList; let i=index">
           <tr class="text-align-center">
             <td>
               <h2>{{cartItem.category}}</h2>

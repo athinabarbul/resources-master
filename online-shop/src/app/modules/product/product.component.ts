@@ -35,7 +35,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   addProductToCart(): void {
     this.cartService.addProductToCart(this.currentProduct);
-    alert('Product' + this.currentProduct.name +  'added to cart');
+    alert('Product ' + this.currentProduct.id +  ' added to cart');
   }
 
   deleteProduct(): void {

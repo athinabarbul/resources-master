@@ -5,6 +5,7 @@ const swagger = require('swagger-ui-express');
 
 const products = require('./products.json');
 const users = require('./users.json');
+const orders = require('./orders.json');
 
 const app = express();
 
@@ -19,7 +20,12 @@ function copy(id, { name, category, price, description, image }) {
     return { id, name, category, price, description, image };
 }
 
-let nextId = Math.max.apply(Math, Object.keys(products).map(n => parseInt(n, 10))) + 1;
+function copyUser(username, fullName, roles, {cart}) {
+	return { username, fullName, roles, cart };
+}
+
+let nextProductId = Math.max.apply(Math, Object.keys(products).map(n => parseInt(n, 10))) + 1;
+let nextOrderId = Math.max.apply(Math, Object.keys(orders).map(n => parseInt(n, 10))) + 1;
 
 app.get('/products', function (_, res) {
     res.send(Object.values(products)
@@ -54,7 +60,7 @@ app.delete('/products/:id', function (req, res) {
 });
 
 app.post('/products', function (req, res) {
-    const id = nextId++;
+    const id = nextProductId++;
     const product = copy(id, req.body || {});
     products[id] = product;
     res.send(product);
@@ -70,7 +76,45 @@ app.post('/login', function (req, res) {
     }
 });
 
+app.get('/orders', function (_, res) {
+    res.send(Object.values(orders));
+});
+
+app.get('/users', function (_, res) {
+	var noPasswordUsers = [];
+	var userList = Object.values(users)
+	for (var i = 0; i < userList.length; i++) {	
+		const {password, ...withoutPassword} = userList[i];	
+		noPasswordUsers.push(withoutPassword);
+	}
+    res.send(Object.values(noPasswordUsers));
+});
+
+app.get('/users/:username', function (req, res) {
+    if (users.hasOwnProperty(req.params.username)) {
+       const user = users[req.params.username];
+	   const {password, ...withoutPassword} = user;
+       res.send(withoutPassword)
+    } else {
+        res.sendStatus(404);
+    }
+});
+
+app.patch('/users/:username', function (req, res) {
+   if (users.hasOwnProperty(req.params.username)) {
+	    var currentUser = users[req.params.username];
+        users[req.params.username] = copyUser(req.params.username, currentUser.fullName, currentUser.roles, req.body || {});
+		res.send(users[req.params.username]);
+        res.sendStatus(204);
+    } else {
+        res.sendStatus(404);
+    }
+});
+
 app.post('/orders', function (req, res) {
+	
+	const id = nextOrderId++;
+	
     if (users[req.body.customer]) {
         for (let line of (req.body.products || [])) {
             if (line.quantity && !products[line.productId]) {
@@ -78,7 +122,8 @@ app.post('/orders', function (req, res) {
                 return;
             }
         }
-
+		
+		orders[id] = req.body;
         res.sendStatus(201);
     } else {
         res.status(404).send("Customer not found.");

@@ -313,17 +313,7 @@
       "description": "Complete package, 1 User, different Multimedia applications, playing music, watching DVDs, only with this Smart package"
     }
   ],
-  "cartItems": [
-    {
-      "id": 1,
-      "name": "Notebook Basic 15",
-      "category": "Laptops",
-      "price": 956,
-      "image": "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1000.jpg",
-      "description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
-      "quantity": 1
-    }
-  ],
+  "cartItems": [],
   "orders": [
     {
       "orderItem": [

@@ -3,18 +3,21 @@
         "username": "doej",
         "password": "password",
         "fullName": "John Doe",
-        "roles": ["user", "customer"]
+        "roles": ["user", "customer"],
+		"cart": []
     },
     "blackj": {
         "username": "blackj",
         "password": "12345678",
         "fullName": "Jack Black",
-        "roles": ["user", "admin"]
+        "roles": ["user", "admin"],
+		"cart": []
     },
     "whiteb": {
         "username": "whiteb",
         "password": "abcdefgh",
         "fullName": "Ben White",
-        "roles": ["user"]
+        "roles": ["user"],
+		"cart": []
     }
 }
