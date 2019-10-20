@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule, Router } from '@angular/router';
-import { ProductService } from '../product/service/product.service';
+import { ProductService } from '../../data/service/product.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
-import { ProductModel } from '../product/product-model';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+import { ProductModel } from '../../data/schema/product-model';
 
 
 @Component({

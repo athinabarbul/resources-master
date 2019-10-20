@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductComponent } from './product/product.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { EditProductComponent } from './edit-product/edit-product.component';
-import { CartComponent } from './cart/cart.component';
-import { LoginComponent } from './login/login.component';
-import { AddProductComponent } from './add-product/add-product.component';
+import { ProductComponent } from './modules/product/product.component';
+import { ProductListComponent } from './modules/product-list/product-list.component';
+import { EditProductComponent } from './modules/edit-product/edit-product.component';
+import { CartComponent } from './modules/cart/cart.component';
+import { LoginComponent } from './modules/login/login.component';
+import { AddProductComponent } from './modules/add-product/add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'add-product', component: AddProductComponent },
   { path: 'edit-product/:id', component: EditProductComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/product-list', pathMatch: 'full' },
 ];
 
 @NgModule({

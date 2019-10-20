@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import * as _ from 'lodash';
 
-import { ProductModel } from '../product/product-model';
-import { ProductService } from '../product/service/product.service';
+import { ProductModel } from '../../data/schema/product-model';
+import { ProductService } from '../../data/service/product.service';
 
 
 @Component({
@@ -28,6 +28,7 @@ export class ProductListComponent implements OnInit{
      this.listOfProductsObserv$.subscribe((data)  => {
      this.listOfProducts = data;
     });
+
   }
 
 

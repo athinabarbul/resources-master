@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CartItemModel } from '../cart-item-model'
-import { ProductModel } from '../../product/product-model'
+import { CartItemModel } from '../schema/cart-item-model'
+import { ProductModel } from '../schema/product-model'
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map'

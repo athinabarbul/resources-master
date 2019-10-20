@@ -6,8 +6,8 @@ import * as _ from 'lodash';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do'
 
+import { ProductModel } from '../schema/product-model';
 
-import { ProductModel } from '../product-model'
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductModel } from './product-model';
+import { ProductModel } from '../../data/schema/product-model';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
-import { CartService } from '../cart/service/cart.service';
-import { ProductService } from '../product/service/product.service';
+import { CartService } from '../../data/service/cart.service';
+import { ProductService } from '../../data/service/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule, Router } from '@angular/router';
 

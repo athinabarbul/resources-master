@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import { ProductModel } from '../product/product-model';
+import { ProductModel } from '../../data/schema/product-model';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule, Router } from '@angular/router';
-import { ProductService } from '../product/service/product.service';
+import { ProductService } from '../../data/service/product.service';
 
 @Component({
   selector: 'app-add-product',
