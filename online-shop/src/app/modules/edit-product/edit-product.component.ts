@@ -17,9 +17,10 @@ import { ProductModel } from '../../data/schema/product-model';
 export class EditProductComponent implements OnInit {
 
   id: number;
-  listOfProductsObserv$: Observable<ProductModel[]>;
+  
+  product$: Observable<ProductModel>;
   currentProduct: ProductModel = undefined;
-  listSubscription: Subscription;
+  productSubscription: Subscription;
 
   editProductForm: FormGroup;
 
@@ -32,14 +33,11 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.listOfProductsObserv$ = this.productService.getProducts();
+    this.product$ = this.productService.getProductById(this.id);
 
 
-    this.listSubscription = this.listOfProductsObserv$.subscribe(listOfProducts => {
-      for (let product of listOfProducts) {
-        if (product.id === this.id)
-          this.currentProduct = product;
-      }
+    this.productSubscription = this.product$.subscribe(product => {
+      this.currentProduct = product;
     })
   }
 
@@ -79,6 +77,7 @@ export class EditProductComponent implements OnInit {
         val => {
           console.log("PUT call successful value returned in body",
             val);
+            this.router.navigate(['/product/' + this.id]);
         },
         response => {
           console.log("PUT call in error", response);
@@ -90,8 +89,8 @@ export class EditProductComponent implements OnInit {
   }
 
   ngOnDestroy(): void{
-    if (this.listSubscription) {
-      this.listSubscription.unsubscribe();
+    if (this.productSubscription) {
+      this.productSubscription.unsubscribe();
     }
   }
 

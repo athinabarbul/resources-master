@@ -78,12 +78,12 @@ app.post('/orders', function (req, res) {
                 return;
             }
         }
+
         res.sendStatus(201);
     } else {
         res.status(404).send("Customer not found.");
     }
 });
-
 
 app.use('/', swagger.serve, swagger.setup(require('./swagger.json')));
 
