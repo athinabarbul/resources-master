@@ -105,7 +105,6 @@ app.patch('/users/:username', function (req, res) {
 	    var currentUser = users[req.params.username];
         users[req.params.username] = copyUser(req.params.username, currentUser.fullName, currentUser.roles, req.body || {});
 		res.send(users[req.params.username]);
-        res.sendStatus(204);
     } else {
         res.sendStatus(404);
     }
