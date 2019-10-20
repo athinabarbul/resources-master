@@ -11,8 +11,8 @@ export class ProductModel {
     this.id = id;
     this.name = name;
     this.category = category;
-    this.price = price;
     this.image = image;
+    this.price = price;
     this.description = description;
   }
 

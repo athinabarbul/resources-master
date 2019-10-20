@@ -7,6 +7,8 @@ import * as _ from 'lodash';
 
 import { ProductModel } from '../../data/schema/product-model';
 import { ProductService } from '../../data/service/product.service';
+import { debug } from 'util';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -14,8 +16,9 @@ import { ProductService } from '../../data/service/product.service';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit, OnDestroy{
 
+  listOfProductsSubscription: Subscription;
   listOfProducts: ProductModel[] = [];
   listOfProductsObserv$: Observable<ProductModel[]>;
 
@@ -25,15 +28,19 @@ export class ProductListComponent implements OnInit{
   ngOnInit() {
      this.listOfProductsObserv$ = this.productService.getProducts();
 
-     this.listOfProductsObserv$.subscribe((data)  => {
-     this.listOfProducts = data;
-    });
-
+     this.listOfProductsSubscription = this.listOfProductsObserv$.subscribe( data => {
+       this.listOfProducts = data;
+     })
   }
 
 
-goToProductDetails(i: number, listOfProducts: ProductModel[]): void {
-  this.router.navigate(['/product/' + listOfProducts[i].id]);
-}
+  goToProductDetails(i: number): void {
+  this.router.navigate(['/product/' + this.listOfProducts[i].id]);
+  }
 
+  ngOnDestroy() {
+    if ( this.listOfProductsSubscription){
+      this.listOfProductsSubscription.unsubscribe();
+    }
+  }
 }

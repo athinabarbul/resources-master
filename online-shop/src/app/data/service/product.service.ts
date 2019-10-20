@@ -17,7 +17,10 @@ export class ProductService {
   }
 
   public getProducts(): Observable<ProductModel[]> {
-    return this.http.get<ProductModel[]>('http://localhost:3000/products').map(data => _.values(data)).do(console.log);
+    return this.http.get<ProductModel[]>('http://localhost:3000/products').do(console.log);
   }
 
+  public getProductById(id: number): Observable<ProductModel> {
+    return this.http.get<ProductModel>('http://localhost:3000/products/' + id).do(console.log);
+  }
 }

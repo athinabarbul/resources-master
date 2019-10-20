@@ -16,9 +16,9 @@ import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
 })
 export class ProductComponent implements OnInit, OnDestroy {
 
-  listOfProducts$: Observable<ProductModel[]>;
+  product$: Observable<ProductModel>;
   currentProduct: ProductModel = undefined;
-  listSubscription: Subscription;
+  productSubscription: Subscription;
   id: number;
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private productService: ProductService,
@@ -26,13 +26,10 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.listOfProducts$ = this.productService.getProducts();
+    this.product$ = this.productService.getProductById(this.id);
 
-    this.listSubscription = this.listOfProducts$.subscribe(listOfProducts => {
-      for (let product of listOfProducts) {
-        if (product.id === this.id)
+    this.productSubscription = this.product$.subscribe(product => {
           this.currentProduct = product;
-      }
     })
   }
 
@@ -42,11 +39,14 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   deleteProduct(): void {
-    this.httpClient.delete('http://localhost:3000/products/' + this.id).subscribe(response => {
+    this.httpClient.delete('http://localhost:3000/products/' + this.currentProduct.id).subscribe(response => {
       console.log("deleted");
+      this.router.navigate(['/product-list']);
     }, (error) => {
       console.log("nono deleted");
     });
+
+    
   }
 
   goToProductEdit(i: number, currentProduct: ProductModel): void {
@@ -54,8 +54,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void{
-    if (this.listSubscription) {
-      this.listSubscription.unsubscribe();
+    if (this.productSubscription) {
+      this.productSubscription.unsubscribe();
     }
   }
 

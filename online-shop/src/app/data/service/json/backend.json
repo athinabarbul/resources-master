@@ -375,5 +375,25 @@
       ],
       "id": 3
     }
+  ],
+  "users": [
+    {
+      "username": "doej",
+      "password": "password",
+      "fullName": "John Doe",
+      "roles": ["user", "customer"]
+    },
+    {
+      "username": "blackj",
+      "password": "12345678",
+      "fullName": "Jack Black",
+      "roles": ["user", "admin"]
+    },
+    {
+      "username": "whiteb",
+      "password": "abcdefgh",
+      "fullName": "Ben White",
+      "roles": ["user"]
+    }
   ]
 }

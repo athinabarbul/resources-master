@@ -28,7 +28,7 @@
 
 <section class="list-of-products mx-5">
   <div class="row">
-    <div class="col" *ngIf="listOfProductsObserv$ | async as listOfProducts else noData">
+    <div class="col">
       <table class="table table-bordered">
 
           <ng-container *ngFor="let product of listOfProducts; let i=index">
@@ -43,11 +43,10 @@
                 <h2>{{product.price}}</h2>
               </td>
               <td>
-                <a routerLink="/product" (click)="goToProductDetails(i, listOfProducts)"><i class="fa fa-chevron-right fa-3x"></i></a>
+                <a routerLink="/product" (click)="goToProductDetails(i)"><i class="fa fa-chevron-right fa-3x"></i></a>
               </td>
             </tr>
           </ng-container>
-        <ng-template #noData>No Data Available</ng-template>
       </table>
     </div>
   </div>
