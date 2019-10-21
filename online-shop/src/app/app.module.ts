@@ -12,6 +12,8 @@ import { EditProductComponent } from './modules/edit-product/edit-product.compon
 import { AddProductComponent } from './modules/add-product/add-product.component';
 import { AuthComponent } from './modules/auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthGuard } from './core/guard/auth.guard';
+import { RoleGuard } from './core/guard/role.guard';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     ReactiveFormsModule,
      
   ],
-  providers: [],
+  providers: [AuthGuard,RoleGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

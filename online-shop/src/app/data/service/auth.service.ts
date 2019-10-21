@@ -15,6 +15,9 @@ import { CartItemModel } from '../schema/cart-item-model';
 
     user: UserModel;
     userBehaviour = new BehaviorSubject<UserModel>(null);
+    isAuthenticated = false;
+    userRole = Role;
+    userLoggedIn :string;
 
     constructor(private http: HttpClient, private router: Router) {
     }
@@ -38,6 +41,10 @@ import { CartItemModel } from '../schema/cart-item-model';
         { headers }).pipe(
           catchError(this.handleError),
           tap(resData => {
+            this.isAuthenticated = true;
+            this.userRole = resData.roles;
+            this.userLoggedIn = resData.username,
+            console.log(this.userLoggedIn);
             this.handleAuthentication(
               resData.username,
               resData.fullName,

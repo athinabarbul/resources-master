@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/map'
 import * as _ from 'lodash';
 import { UserModel } from '../schema/user';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class CartService {
   userList$: Observable<UserModel>;
   listOfCartItems: CartItemModel[];
   
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,
+    private authService: AuthService) {
     this.userList$ = this.getProductsOrder();
     this.userList$.subscribe((data) => { this.userDetails = data;
     this.listOfCartItems = this.userDetails.cart; });
@@ -28,7 +30,6 @@ export class CartService {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
 
-    
     if (this.listOfCartItems.length === 0) {
       this.listOfCartItems.push(new CartItemModel(product.id, product.name, product.category, product.price, product.description, product.image, 1));
     }
@@ -49,7 +50,7 @@ export class CartService {
 
     let cart = this.listOfCartItems;
       
-      this.http.patch('http://localhost:3000/users/' + 'doej',
+      this.http.patch('http://localhost:3000/users/' + this.authService.userLoggedIn,
       {
         cart
       },
@@ -84,7 +85,7 @@ export class CartService {
 
     let cart = this.listOfCartItems;
       
-      this.http.patch('http://localhost:3000/users/' + 'doej',
+      this.http.patch('http://localhost:3000/users/' + this.authService.userLoggedIn,
       {
         cart
       },
@@ -151,7 +152,7 @@ export class CartService {
 
       let cart = this.listOfCartItems;
       
-      this.http.patch('http://localhost:3000/users/' + 'doej',
+      this.http.patch('http://localhost:3000/users/' + this.authService.userLoggedIn,
       {
         cart
       },
@@ -173,7 +174,7 @@ export class CartService {
   }
 
   public getProductsOrder(): Observable<UserModel> {
-    return this.http.get<UserModel>('http://localhost:3000/users/' + 'doej');
+    return this.http.get<UserModel>('http://localhost:3000/users/' + this.authService.userLoggedIn);
 
   }
 

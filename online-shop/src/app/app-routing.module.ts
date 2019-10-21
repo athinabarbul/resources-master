@@ -8,13 +8,18 @@ import { AuthComponent } from './modules/auth/auth.component';
 import { AddProductComponent } from './modules/add-product/add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './core/guard/auth.guard';
+import { RoleGuard } from './core/guard/role.guard';
+
 
 const routes: Routes = [
   { path: 'product/:id', component: ProductComponent, canActivate: [AuthGuard] },
   { path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard]},
   { path: 'shopping-cart', component: CartComponent, canActivate: [AuthGuard] },
   { path: 'add-product', component: AddProductComponent, canActivate: [AuthGuard] },
-  { path: 'edit-product/:id', component: EditProductComponent, canActivate: [AuthGuard] },
+  { path: 'edit-product/:id', component: EditProductComponent, canActivate: [RoleGuard], 
+    data: { 
+    expectedRole: 'admin'
+    }  },
   { path: 'login', component: AuthComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
