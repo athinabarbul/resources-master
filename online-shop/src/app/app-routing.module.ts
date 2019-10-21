@@ -4,7 +4,7 @@ import { ProductComponent } from './modules/product/product.component';
 import { ProductListComponent } from './modules/product-list/product-list.component';
 import { EditProductComponent } from './modules/edit-product/edit-product.component';
 import { CartComponent } from './modules/cart/cart.component';
-import { LoginComponent } from './modules/login/login.component';
+import { AuthComponent } from './modules/auth/auth.component';
 import { AddProductComponent } from './modules/add-product/add-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'shopping-cart', component: CartComponent },
   { path: 'add-product', component: AddProductComponent },
   { path: 'edit-product/:id', component: EditProductComponent },
-  { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/product-list', pathMatch: 'full' },
+  { path: 'login', component: AuthComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({
