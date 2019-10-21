@@ -18,10 +18,10 @@
       <h1 class="product-name">Products</h1>
     </div>
     <div class="col-md">
-      <button routerLink="/shopping-cart" class="btn btn-primary btn-lg btn-product"><i class="fa fa-shopping-cart"></i></button>
+      <button routerLink="/shopping-cart" disableIfNotCustomer class="btn btn-primary btn-lg btn-product"><i class="fa fa-shopping-cart"></i></button>
     </div>
     <div class="col-md">
-      <button routerLink="/add-product/" class="btn btn-primary btn-lg btn-product">Add</button>
+      <button routerLink="/add-product/" disableIfNotAdmin class="btn btn-primary btn-lg btn-product">Add</button>
     </div>
   </div>
 </section>

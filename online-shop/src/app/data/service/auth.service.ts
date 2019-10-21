@@ -39,7 +39,6 @@ import { CartItemModel } from '../schema/cart-item-model';
           "password": userPassword
         },
         { headers }).pipe(
-          catchError(this.handleError),
           tap(resData => {
             this.isAuthenticated = true;
             this.userRole = resData.roles;
@@ -55,14 +54,6 @@ import { CartItemModel } from '../schema/cart-item-model';
         );
       }
 
-      private handleError(errorRes: HttpErrorResponse) {
-        let errorMessage = 'An unknown error occurred!';
-        if (!errorRes.error || !errorRes.error.error) {
-          return throwError(errorMessage);
-        }
-        return throwError(errorMessage);
-      }
-
       private handleAuthentication(
         username: string,
         fullName: string,
@@ -73,6 +64,14 @@ import { CartItemModel } from '../schema/cart-item-model';
         this.userBehaviour.next(user);
         localStorage.setItem('userData', JSON.stringify(user));
       }
+
+      hasPermission(permission: Role) {
+        
+        if(Object.values(this.userRole).includes(permission)){
+          return true;
+        }
+        return false;
+    }
   
     }
   

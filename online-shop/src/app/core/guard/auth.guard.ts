@@ -9,6 +9,7 @@ import {
   import { Observable } from 'rxjs';
   import { map, tap, take } from 'rxjs/operators';
   import { AuthService } from 'src/app/data/service/auth.service';
+import { CartService } from 'src/app/data/service/cart.service';
 
 
 
@@ -17,7 +18,8 @@ export class AuthGuard implements CanActivate {
 
     constructor(
         private router: Router,
-        private authService: AuthService
+        private authService: AuthService,
+        private cartService: CartService
     ) {}
 
     canActivate(

@@ -14,12 +14,20 @@ import { RoleGuard } from './core/guard/role.guard';
 const routes: Routes = [
   { path: 'product/:id', component: ProductComponent, canActivate: [AuthGuard] },
   { path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard]},
-  { path: 'shopping-cart', component: CartComponent, canActivate: [AuthGuard] },
-  { path: 'add-product', component: AddProductComponent, canActivate: [AuthGuard] },
+  { path: 'shopping-cart', component: CartComponent, canActivate: [RoleGuard], 
+    data: { 
+       expectedRole: ['admin', 'customer']
+      }  
+   },
+   { path: 'add-product', component: AddProductComponent, canActivate: [RoleGuard],
+    data: { 
+      expectedRole: ['admin']
+     }  
+  },
   { path: 'edit-product/:id', component: EditProductComponent, canActivate: [RoleGuard], 
     data: { 
-    expectedRole: 'admin'
-    }  },
+    expectedRole: ['admin']
+      }  },
   { path: 'login', component: AuthComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
 ];

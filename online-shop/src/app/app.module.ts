@@ -14,6 +14,8 @@ import { AuthComponent } from './modules/auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { RoleGuard } from './core/guard/role.guard';
+import { DisableIfUnauthorizedDirectiveAdmin } from './shared/directive/disable-button-admin.directive';
+import { DisableIfUnauthorizedDirectiveCustomer } from './shared/directive/disable-button-customer.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RoleGuard } from './core/guard/role.guard';
     EditProductComponent, 
     AddProductComponent,
     AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    DisableIfUnauthorizedDirectiveAdmin,
+    DisableIfUnauthorizedDirectiveCustomer
   ],
   imports: [
     BrowserModule,

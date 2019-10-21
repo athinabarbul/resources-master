@@ -120,6 +120,7 @@ export class CartService {
     return products;
   }
 
+
   completeOrder(): void {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
