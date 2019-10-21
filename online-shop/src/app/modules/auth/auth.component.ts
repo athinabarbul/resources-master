@@ -4,7 +4,7 @@ import { RouterModule, Router } from '@angular/router';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { AuthService } from 'src/app/data/service/auh.service';
+import { AuthService } from 'src/app/data/service/auth.service';
 
 
 @Component({
