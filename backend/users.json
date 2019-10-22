@@ -19,5 +19,12 @@
         "fullName": "Ben White",
         "roles": ["user"],
 		"cart": []
+    },
+	"johns": {
+        "username": "johns",
+        "password": "qwerty",
+        "fullName": "John Smith",
+        "roles": ["user", "customer"],
+		"cart": []
     }
 }

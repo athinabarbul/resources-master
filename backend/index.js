@@ -20,8 +20,8 @@ function copy(id, { name, category, price, description, image }) {
     return { id, name, category, price, description, image };
 }
 
-function copyUser(username, fullName, roles, {cart}) {
-	return { username, fullName, roles, cart };
+function copyUser(username, fullName, roles, password, {cart}) {
+	return { username, fullName, roles, password, cart };
 }
 
 let nextProductId = Math.max.apply(Math, Object.keys(products).map(n => parseInt(n, 10))) + 1;
@@ -68,7 +68,10 @@ app.post('/products', function (req, res) {
 
 app.post('/login', function (req, res) {
     const user = users[req.body.username];
-    if (user && user.password === req.body.password) {
+	console.log(user);
+	console.log(user.password);
+	console.log(req.body.password);
+    if (user && user.password === req.body.password) {		
         const {password, ...withoutPassword} = user;
         res.send(withoutPassword)
     } else {
@@ -103,7 +106,7 @@ app.get('/users/:username', function (req, res) {
 app.patch('/users/:username', function (req, res) {
    if (users.hasOwnProperty(req.params.username)) {
 	    var currentUser = users[req.params.username];
-        users[req.params.username] = copyUser(req.params.username, currentUser.fullName, currentUser.roles, req.body || {});
+        users[req.params.username] = copyUser(req.params.username, currentUser.fullName, currentUser.roles, currentUser.password, req.body || {});
 		res.send(users[req.params.username]);
     } else {
         res.sendStatus(404);
