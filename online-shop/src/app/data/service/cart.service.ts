@@ -16,7 +16,6 @@ export class CartService {
 
   userDetails: UserModel;
   userList$: Observable<UserModel>;
-  listOfCartItems: CartItemModel[];
   
   constructor(private http: HttpClient, private router: Router,
     private authService: AuthService) {
@@ -31,14 +30,13 @@ export class CartService {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
       
-    this.listOfCartItems = this.authService.userCart;
-
-    if (this.listOfCartItems.length === 0) {
-      this.listOfCartItems.push(new CartItemModel(product.id, product.name, product.category, product.price, product.description, product.image, 1));
+  
+    if (this.authService.userCart.length === 0) {
+      this.authService.userCart.push(new CartItemModel(product.id, product.name, product.category, product.price, product.description, product.image, 1));
     }
     else {
       let flag = false;
-      for (let cartItem of this.listOfCartItems) {
+      for (let cartItem of this.authService.userCart) {
         if (cartItem.id == product.id) {
           cartItem.quantity++;
           flag = true;
@@ -47,11 +45,11 @@ export class CartService {
 
       }
       if (flag === false) {
-        this.listOfCartItems.push(new CartItemModel(product.id, product.name, product.category, product.price, product.description, product.image, 1));
+        this.authService.userCart.push(new CartItemModel(product.id, product.name, product.category, product.price, product.description, product.image, 1));
       }
     }
 
-    let cart = this.listOfCartItems;
+    let cart = this.authService.userCart;
       
       this.http.patch('http://localhost:3000/users/' + this.authService.userLoggedIn,
       {
@@ -61,7 +59,7 @@ export class CartService {
       .subscribe(
         val => {
           this.userList$.subscribe((data) => { this.userDetails = data;
-            this.listOfCartItems = this.userDetails.cart; });
+            this.authService.userCart = this.userDetails.cart; });
           console.log("POST call successful value returned in body",
             val);
         },
@@ -79,16 +77,16 @@ export class CartService {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
 
-      this.listOfCartItems = this.authService.userCart;  
+      this.authService.userCart = this.authService.userCart;  
 
-    if (this.listOfCartItems[i].quantity == 1) {
-      this.listOfCartItems.splice(i, 1);
+    if (this.authService.userCart[i].quantity == 1) {
+      this.authService.userCart.splice(i, 1);
     }
     else {
-      this.listOfCartItems[i].quantity--;
+      this.authService.userCart[i].quantity--;
     }
 
-    let cart = this.listOfCartItems;
+    let cart = this.authService.userCart;
       
       this.http.patch('http://localhost:3000/users/' + this.authService.userLoggedIn,
       {
@@ -98,7 +96,7 @@ export class CartService {
       .subscribe(
         val => {
           // this.router.navigate(['/shopping-cart']);
-          this.listOfCartItems = <CartItemModel[]>(<UserModel>val).cart;
+          this.authService.userCart = <CartItemModel[]>(<UserModel>val).cart;
           console.log("POST call successful value returned in body",
             val);
         },
@@ -113,11 +111,11 @@ export class CartService {
 
   mapProducts(): any[]{
 
-    this.listOfCartItems = this.authService.userCart;
+    this.authService.userCart = this.authService.userCart;
 
     let products : any[] = [];
 
-    for (let item of this.listOfCartItems){
+    for (let item of this.authService.userCart){
         products.push({
           "productId": item.id,
           "quantity": item.quantity
@@ -133,7 +131,7 @@ export class CartService {
       .set("Content-Type", "application/json");
 
     let orderedItems = this.mapProducts();
-    this.listOfCartItems = this.authService.userCart;
+    this.authService.userCart = this.authService.userCart;
 
     console.log(orderedItems);
 
@@ -157,9 +155,9 @@ export class CartService {
       );
      
 
-      this.listOfCartItems = [];
+      this.authService.userCart = [];
 
-      let cart = this.listOfCartItems;
+      let cart = this.authService.userCart;
       
       this.http.patch('http://localhost:3000/users/' + this.authService.userLoggedIn,
       {

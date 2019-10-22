@@ -68,9 +68,6 @@ app.post('/products', function (req, res) {
 
 app.post('/login', function (req, res) {
     const user = users[req.body.username];
-	console.log(user);
-	console.log(user.password);
-	console.log(req.body.password);
     if (user && user.password === req.body.password) {		
         const {password, ...withoutPassword} = user;
         res.send(withoutPassword)
