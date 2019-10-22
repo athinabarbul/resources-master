@@ -6,7 +6,6 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/data/service/auth.service';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './auth.component.html',

@@ -18,6 +18,7 @@ import { CartItemModel } from '../schema/cart-item-model';
     isAuthenticated = false;
     userRole = Role;
     userLoggedIn :string;
+    userCart : CartItemModel[];
 
     constructor(private http: HttpClient, private router: Router) {
     }
@@ -43,7 +44,8 @@ import { CartItemModel } from '../schema/cart-item-model';
             this.isAuthenticated = true;
             this.userRole = resData.roles;
             this.userLoggedIn = resData.username,
-            console.log(this.userLoggedIn);
+            this.userCart = resData.cart,
+            console.log(this.userCart);
             this.handleAuthentication(
               resData.username,
               resData.fullName,

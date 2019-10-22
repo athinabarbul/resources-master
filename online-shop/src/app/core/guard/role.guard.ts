@@ -20,7 +20,7 @@ export class RoleGuard implements CanActivate {
 
      for(let roleMember in this.authService.userRole){
          for(let expectedRoleMember in expectedRole){
-             debugger
+             
              if( this.authService.userRole[roleMember] === expectedRole[expectedRoleMember]){
                  roleFlag = true;
              }

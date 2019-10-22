@@ -16,6 +16,7 @@
           <hr class="hr-card">
           <section class="login-form">
             <form [formGroup]="loginForm" required >
+              
             <div class="form-group">
               <label for="userName">User Name:</label>
               <input formControlName="userName" type="text" class="form-control" id="userName" aria-describedby="emailHelp" required>
@@ -27,7 +28,7 @@
           </form>
           </section>
   
-          <button (click)="login()" class="btn btn-product ">LOG IN</button>
+          <button (click)="login()" mat-raised-button color="primary" class="btn-login">LOG IN</button>
         </div>
       </div>
     </div>

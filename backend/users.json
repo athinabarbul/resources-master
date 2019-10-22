@@ -3,7 +3,7 @@
         "username": "doej",
         "password": "password",
         "fullName": "John Doe",
-        "roles": ["customer"],
+        "roles": ["user", "customer"],
 		"cart": []
     },
     "blackj": {

@@ -20,6 +20,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   currentProduct: ProductModel = undefined;
   productSubscription: Subscription;
   id: number;
+  
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private productService: ProductService,
     private cartService: CartService, private router: Router) { }
@@ -35,7 +36,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   addProductToCart(): void {
     this.cartService.addProductToCart(this.currentProduct);
-    alert('Product ' + this.currentProduct.id +  ' added to cart');
+    alert('Product ' + this.currentProduct.name +  ' added to cart');
   }
 
   deleteProduct(): void {

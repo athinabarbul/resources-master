@@ -16,6 +16,9 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { RoleGuard } from './core/guard/role.guard';
 import { DisableIfUnauthorizedDirectiveAdmin } from './shared/directive/disable-button-admin.directive';
 import { DisableIfUnauthorizedDirectiveCustomer } from './shared/directive/disable-button-customer.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { DisableIfUnauthorizedDirectiveCustomer } from './shared/directive/disab
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-     
+    BrowserAnimationsModule,
+    MatButtonModule,
   ],
   providers: [AuthGuard,RoleGuard],
   bootstrap: [AppComponent]

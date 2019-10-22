@@ -6,13 +6,13 @@
         <h1 class="product-name">Product: {{currentProduct.name}} </h1>
       </div>
       <div class="col">
-        <button routerLink="/product-list" disableIfNotCustomer (click) = "addProductToCart()" class="btn btn-warning btn-lg  btn-product"><i class="fa fa-plus"></i></button>
+        <button routerLink="/product-list" disableIfNotCustomer (click) = "addProductToCart()" class="btn text-white btn-lg  btn-product-add"><i class="fa fa-plus"></i></button>
       </div>
       <div class="col">
-        <button routerLink="/edit-product/" disableIfNotAdmin (click)="goToProductEdit(i, currentProduct)" class="btn btn-primary btn-lg  btn-product">Edit</button>
+        <button routerLink="/edit-product/" disableIfNotAdmin (click)="goToProductEdit(i, currentProduct)" class="btn text-white btn-lg  btn-product-edit">Edit</button>
       </div>
       <div class="col">
-        <button (click) = "deleteProduct()" disableIfNotAdmin class="btn btn-danger btn-lg text-dark btn-product">Delete</button>
+        <button (click) = "deleteProduct()" disableIfNotAdmin class="btn btn-lg text-white btn-product-delete">Delete</button>
       </div>
   </div>
 </section>

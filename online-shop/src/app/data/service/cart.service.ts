@@ -22,13 +22,16 @@ export class CartService {
     private authService: AuthService) {
     this.userList$ = this.getProductsOrder();
     this.userList$.subscribe((data) => { this.userDetails = data;
-    this.listOfCartItems = this.userDetails.cart; });
+    });
+    
   }
 
   addProductToCart(product: ProductModel): void {
 
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
+      
+    this.listOfCartItems = this.authService.userCart;
 
     if (this.listOfCartItems.length === 0) {
       this.listOfCartItems.push(new CartItemModel(product.id, product.name, product.category, product.price, product.description, product.image, 1));
@@ -76,6 +79,8 @@ export class CartService {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
 
+      this.listOfCartItems = this.authService.userCart;  
+
     if (this.listOfCartItems[i].quantity == 1) {
       this.listOfCartItems.splice(i, 1);
     }
@@ -108,6 +113,8 @@ export class CartService {
 
   mapProducts(): any[]{
 
+    this.listOfCartItems = this.authService.userCart;
+
     let products : any[] = [];
 
     for (let item of this.listOfCartItems){
@@ -126,6 +133,7 @@ export class CartService {
       .set("Content-Type", "application/json");
 
     let orderedItems = this.mapProducts();
+    this.listOfCartItems = this.authService.userCart;
 
     console.log(orderedItems);
 
@@ -160,7 +168,7 @@ export class CartService {
       { headers })
       .subscribe(
         val => {
-          this.router.navigate(['/shopping-cart']);
+          this.router.navigate(['/product-list']);
           console.log("POST call successful value returned in body",
             val);
         },
