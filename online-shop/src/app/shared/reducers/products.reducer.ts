@@ -12,7 +12,7 @@ export const initialState: ProductState = {
     loading: false,
     error: null
   };
-
+  
   export function reducer(
     state = initialState,
     action: fromProduct.ActionsUnion
@@ -41,6 +41,14 @@ export const initialState: ProductState = {
           error: action.payload.error
         };
       }
+
+      case fromProduct.ActionTypes.AddNewProduct:
+        return{
+          ...state,
+          loading:null,
+          items: [...state.items, action.payload]
+        };
+
   
       default: {
         return state;

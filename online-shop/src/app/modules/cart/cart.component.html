@@ -13,6 +13,7 @@
 <section class="list-of-products mx-5">
   <div class="row">
     <div class="col">
+      <div *ngIf="cartListObservable$ | async as cartItem">
       <table class="table table-bordered">
         <ng-container *ngFor="let cartItem of cartList; let i=index">
           <tr class="text-align-center">
@@ -37,6 +38,7 @@
 
       </table>
     </div>
+  </div>
   </div>
 
 </section>

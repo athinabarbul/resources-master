@@ -7,7 +7,6 @@ import * as _ from 'lodash';
 
 import { ProductModel } from '../../data/schema/product-model';
 import { ProductService } from '../../data/service/product.service';
-import { debug } from 'util';
 import { Subscription } from 'rxjs';
 
 
@@ -22,12 +21,12 @@ export class ProductListComponent implements OnInit, OnDestroy{
   listOfProducts: ProductModel[] = [];
   listOfProductsObserv$: Observable<ProductModel[]>;
 
-  constructor(private http: HttpClient, private router: Router, private productService: ProductService) {
+    constructor(private http: HttpClient, private router: Router, private productService: ProductService) {
   }
 
   ngOnInit() {
+     
      this.listOfProductsObserv$ = this.productService.getItems();
-
      this.listOfProductsSubscription = this.listOfProductsObserv$.subscribe( data => {
        this.listOfProducts = data;
      })

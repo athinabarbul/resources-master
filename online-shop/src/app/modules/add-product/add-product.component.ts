@@ -5,6 +5,9 @@ import { ProductModel } from '../../data/schema/product-model';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule, Router } from '@angular/router';
 import { ProductService } from '../../data/service/product.service';
+import * as fromProducts from "../../shared/reducers/products.reducer";
+import { Store } from '@ngrx/store';
+import * as ProductsActions from "../../shared/actions/products.actions";
 
 @Component({
   selector: 'app-add-product',
@@ -15,10 +18,12 @@ export class AddProductComponent implements OnInit {
 
   addProductForm: FormGroup;
   id: number;
+  
 
 
   constructor(private fb: FormBuilder, private http: HttpClient,
-     private router: Router, private productService:ProductService) { }
+     private router: Router, private productService:ProductService,
+     private store: Store<{fromProducts: {products: ProductModel[]}}>) { }
 
   ngOnInit() {
     this.createForm();
@@ -37,33 +42,14 @@ export class AddProductComponent implements OnInit {
 
   saveProductDetails(): void{
 
-    const headers = new HttpHeaders()
-      .set("Content-Type", "application/json");
-
-      this.http.post('http://localhost:3000/products',
-        {
-          "id": this.id,
-          "name":  this.addProductForm.value.name,
-          "category": this.addProductForm.value.category,
-          "price": this.addProductForm.value.price,
-          "image": this.addProductForm.value.image,
-          "description": this.addProductForm.value.description
-        },
-        { headers })
-        .subscribe(
-          val => {
-            console.log("POST call successful value returned in body",
-              val);
-              this.productService.load();
-              this.router.navigate(['/product-list']);
-          },
-          response => {
-            console.log("POST call in error", response);
-          },
-          () => {
-            console.log("The POST observable is now completed.");
-          }
-        );
+    this.store.dispatch(new ProductsActions.AddNewProduct(new ProductModel(this.id,
+      this.addProductForm.value.name,
+      this.addProductForm.value.category,
+      this.addProductForm.value.price,
+      this.addProductForm.value.image,
+      this.addProductForm.value.description)));
+    
+      this.router.navigate(['/product-list']);
 
   }
 

@@ -1,9 +1,11 @@
 import { Action } from "@ngrx/store";
+import { ProductModel } from 'src/app/data/schema/product-model';
 
 export enum ActionTypes {
   LoadDataBegin = "[ProductsLoad] Load data begin",
   LoadDataSuccess = "[ProductsLoad] Load data success",
-  LoadDataFailure = "[ProductsLoad] Load data failure"
+  LoadDataFailure = "[ProductsLoad] Load data failure",
+  AddNewProduct = "[ProductNew] Adding new product"
 }
 
 export class LoadDataBegin implements Action {
@@ -22,4 +24,9 @@ export class LoadDataFailure implements Action {
   constructor(public payload: { error: any }) {}
 }
 
-export type ActionsUnion = LoadDataBegin | LoadDataSuccess | LoadDataFailure;
+export class AddNewProduct implements Action{
+  readonly type = ActionTypes.AddNewProduct;
+  constructor(public payload: ProductModel){}
+}
+
+export type ActionsUnion = LoadDataBegin | LoadDataSuccess | LoadDataFailure | AddNewProduct;
