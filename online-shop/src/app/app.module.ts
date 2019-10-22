@@ -18,9 +18,15 @@ import { DisableIfUnauthorizedDirectiveAdmin } from './shared/directive/disable-
 import { DisableIfUnauthorizedDirectiveCustomer } from './shared/directive/disable-button-customer.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
+
+import { reducers, metaReducers  } from './shared/reducers';
+import { effects } from './shared/effects';
 
 @NgModule({
+
   declarations: [
     AppComponent,
     ProductComponent,
@@ -40,6 +46,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot(effects)
+    
   ],
   providers: [AuthGuard,RoleGuard],
   bootstrap: [AppComponent]

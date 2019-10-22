@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartItemModel } from '../../data/schema/cart-item-model'
 import { Observable } from 'rxjs/Observable';
 import { CartService } from '../../data/service/cart.service'
-import { UserModel } from 'src/app/data/schema/user';
 import { Subscription } from 'rxjs';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-cart',
@@ -12,17 +12,19 @@ import { Subscription } from 'rxjs';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
-  user$: Observable<UserModel>;
-  userDetails: UserModel;
+  cartListObservable$: Observable<CartItemModel[]>;
   cartList: CartItemModel[];
-  userSubscription: Subscription;
+  cartSubscription: Subscription;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit() {
-    this.user$ = this.cartService.getProductsOrder();
-    this.userSubscription = this.user$.subscribe((data) => { this.userDetails = data;
-      this.cartList = this.userDetails.cart; });
+
+    this.cartListObservable$ = this.cartService.getCartItems();
+
+    this.cartSubscription = this.cartListObservable$.subscribe( data => {
+      this.cartList = data;
+    })
   }
 
   removeCartItem(i:number) : void{
@@ -43,8 +45,8 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.userSubscription){
-      this.userSubscription.unsubscribe(); 
+    if(this.cartSubscription){
+      this.cartSubscription.unsubscribe(); 
     }
   }
 

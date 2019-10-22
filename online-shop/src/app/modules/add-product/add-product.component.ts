@@ -17,7 +17,8 @@ export class AddProductComponent implements OnInit {
   id: number;
 
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) { }
+  constructor(private fb: FormBuilder, private http: HttpClient,
+     private router: Router, private productService:ProductService) { }
 
   ngOnInit() {
     this.createForm();
@@ -53,6 +54,7 @@ export class AddProductComponent implements OnInit {
           val => {
             console.log("POST call successful value returned in body",
               val);
+              this.productService.load();
               this.router.navigate(['/product-list']);
           },
           response => {

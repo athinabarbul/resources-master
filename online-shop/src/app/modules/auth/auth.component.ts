@@ -5,6 +5,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/data/service/auth.service';
+import { ProductService } from 'src/app/data/service/product.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   loginSubscription : Subscription;
 
   constructor(private fb: FormBuilder, private http: HttpClient,private router: Router,
-    private authService : AuthService) {
+    private authService : AuthService, private productService : ProductService) {
       this.createForm();
   }
 
@@ -45,6 +46,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.loginSubscription = this.authService.loginObsv(this.loginForm.value.userName, 
         this.loginForm.value.userPassword).subscribe(
         val => {
+          this.productService.load();
           this.router.navigate(['/product-list']);
           console.log("POST call successful value returned in body",
             val);

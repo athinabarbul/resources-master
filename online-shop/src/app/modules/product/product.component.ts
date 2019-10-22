@@ -42,6 +42,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   deleteProduct(): void {
     this.httpClient.delete('http://localhost:3000/products/' + this.currentProduct.id).subscribe(response => {
       console.log("deleted");
+      this.productService.load();
       this.router.navigate(['/product-list']);
     }, (error) => {
       console.log("nono deleted");

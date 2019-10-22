@@ -19,19 +19,19 @@ import { CartItemModel } from '../schema/cart-item-model';
     userRole = Role;
     userLoggedIn :string;
     userCart : CartItemModel[];
+    username: string;
 
     constructor(private http: HttpClient, private router: Router) {
     }
 
-    public getUserDetails(): Observable<UserModel[]> {
-      return this.http.get<UserModel[]>('http://localhost:3000/login').do(console.log);
+    getCurrentUserDetails() : Observable<UserModel> {
+      return <Observable<UserModel>>this.http.get("http://localhost:3000/users/" + this.userLoggedIn);
     }
     
     loginObsv(userName:string, userPassword:string) : Observable<any>{
     
       const headers = new HttpHeaders()
           .set("Content-Type", "application/json");
-
 
           
       return this.http.post('http://localhost:3000/login',

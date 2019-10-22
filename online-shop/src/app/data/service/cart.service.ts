@@ -9,6 +9,11 @@ import * as _ from 'lodash';
 import { UserModel } from '../schema/user';
 import { AuthService } from './auth.service';
 
+
+import { Store } from "@ngrx/store";
+import * as CartActions from "../../shared/actions/cart.actions";
+import { AppState, getAllCartItems, getCartState } from "../../shared/reducers";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +23,7 @@ export class CartService {
   userList$: Observable<UserModel>;
   
   constructor(private http: HttpClient, private router: Router,
-    private authService: AuthService) {
+    private authService: AuthService, private store: Store<AppState>) {
     this.userList$ = this.getProductsOrder();
     this.userList$.subscribe((data) => { this.userDetails = data;
     });
@@ -60,6 +65,7 @@ export class CartService {
         val => {
           this.userList$.subscribe((data) => { this.userDetails = data;
             this.authService.userCart = this.userDetails.cart; });
+          this.loadCartItems();
           console.log("POST call successful value returned in body",
             val);
         },
@@ -95,6 +101,7 @@ export class CartService {
       { headers })
       .subscribe(
         val => {
+          this.loadCartItems();
           // this.router.navigate(['/shopping-cart']);
           this.authService.userCart = <CartItemModel[]>(<UserModel>val).cart;
           console.log("POST call successful value returned in body",
@@ -166,6 +173,7 @@ export class CartService {
       { headers })
       .subscribe(
         val => {
+          this.loadCartItems();
           this.router.navigate(['/product-list']);
           console.log("POST call successful value returned in body",
             val);
@@ -183,6 +191,18 @@ export class CartService {
   public getProductsOrder(): Observable<UserModel> {
     return this.http.get<UserModel>('http://localhost:3000/users/' + this.authService.userLoggedIn);
 
+  }
+
+  loadCartItems() {
+    this.store.dispatch(new CartActions.LoadDataBegin());
+  }
+
+  getDataFromCart() {
+    return this.store.select(getCartState);
+  }
+
+  getCartItems() {
+    return this.store.select(getAllCartItems);
   }
 
 }
