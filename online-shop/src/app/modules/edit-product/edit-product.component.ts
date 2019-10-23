@@ -73,7 +73,6 @@ export class EditProductComponent implements OnInit {
       product: this.productService.updatedProduct
     }));
     this.productService.updateProduct();
-    this.productService.loadSingleProduct();
     this.router.navigate(['/product/'+ this.id]);
 
   }

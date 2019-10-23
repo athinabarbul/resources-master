@@ -20,6 +20,7 @@ export class ProductService {
 
   newProduct: ProductModel;
   updatedProduct: ProductModel;
+  deletedProductId: number;
   lastId: number;
   navigateToProductId: number;
 
@@ -77,6 +78,7 @@ export class ProductService {
       { headers })
       .subscribe(
         val => {
+          this.loadSingleProduct();
           console.log("PUT call successful value returned in body",
             val);
             
@@ -88,6 +90,15 @@ export class ProductService {
           console.log("The PUT observable is now completed.");
         }
       );
+  }
+
+  deleteProduct(): void {
+    this.http.delete('http://localhost:3000/products/' + this.deletedProductId).subscribe(response => {
+      console.log("deleted");
+      this.load();
+    }, (error) => {
+      console.log("nono deleted");
+    });
   }
 
 

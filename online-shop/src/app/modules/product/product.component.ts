@@ -5,9 +5,11 @@ import { Subscription } from 'rxjs';
 import { CartService } from '../../data/service/cart-service/cart.service';
 import { ProductService } from '../../data/service/product-service/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { RouterModule, Router } from '@angular/router';
+import {  Router } from '@angular/router';
+import * as ProductsActions from "../../shared/actions/products.actions";
 
-import { HttpHeaders, HttpClient, HttpParams } from "@angular/common/http";
+import {  HttpClient  } from "@angular/common/http";
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-product',
@@ -23,7 +25,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private productService: ProductService,
-    private cartService: CartService, private router: Router) { }
+    private cartService: CartService, private router: Router,
+    private store: Store<{fromProducts: {products: ProductModel[]}}>) { }
 
   ngOnInit() {
 
@@ -31,10 +34,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
     this.productSubscription = this.product$.subscribe(product => {
       this.currentProduct = product;
-})
-    // this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    // this.product$ = this.productService.getProductById();
-
+    })
 
   }
 
@@ -44,15 +44,10 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   deleteProduct(): void {
-    this.httpClient.delete('http://localhost:3000/products/' + this.currentProduct.id).subscribe(response => {
-      console.log("deleted");
-      this.productService.load();
-      this.router.navigate(['/product-list']);
-    }, (error) => {
-      console.log("nono deleted");
-    });
-
-    
+    this.productService.deletedProductId = this.currentProduct.id;
+    this.store.dispatch(new ProductsActions.DeleteProduct(this.productService.deletedProductId));
+    this.productService.deleteProduct();
+    this.router.navigate(['/product-list']);
   }
 
   goToProductEdit(i: number, currentProduct: ProductModel): void {
