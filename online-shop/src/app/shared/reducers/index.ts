@@ -10,6 +10,7 @@ import {
   import * as fromProducts from "./products.reducer";
   import * as fromProduct from "./product.reducer";
   import * as fromCart from "./cart.reducer";
+ 
   
   export interface AppState {
     data: fromProducts.ProductsState;
@@ -20,7 +21,7 @@ import {
   export const reducers: ActionReducerMap<AppState> = {
     data: fromProducts.reducer,
     cartData: fromCart.reducerCart,
-    productData: fromProduct.reducerProduct
+    productData: fromProduct.reducerProduct,
   };
   
   export const metaReducers: MetaReducer<AppState>[] = !environment.production

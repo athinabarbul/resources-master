@@ -19,7 +19,6 @@ export const initialState: CartState = {
   ): CartState {
     switch (action.type) {
       case fromCart.ActionTypes.LoadDataBegin: {
-        console.log("BEGIN");
         return {
           ...state,
           loading: true,
@@ -28,7 +27,6 @@ export const initialState: CartState = {
       }
   
       case fromCart.ActionTypes.LoadDataSuccess: {
-        console.log("SUCCESS");
         return {
           ...state,
           loading: false,
@@ -43,6 +41,13 @@ export const initialState: CartState = {
           error: action.payload.error
         };
       }
+
+      case fromCart.ActionTypes.AddNewCartProduct:
+        return{
+          ...state,
+          loading:null,
+          items: [...state.items, action.payload]
+        };
   
       default: {
         return state;

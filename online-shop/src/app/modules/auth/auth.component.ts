@@ -1,9 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { RouterModule, Router } from '@angular/router';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Component, OnDestroy } from '@angular/core';
+import {  Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/data/service/auth-service/auth.service';
 import { ProductService } from 'src/app/data/service/product-service/product.service';
 
@@ -12,7 +11,7 @@ import { ProductService } from 'src/app/data/service/product-service/product.ser
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnInit, OnDestroy {
+export class AuthComponent implements OnDestroy {
 
 
   loginForm: FormGroup;
@@ -26,11 +25,7 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.createForm();
   }
 
-  ngOnInit() {
-
-  }
-  
-
+ 
   createForm() {
 
     this.loginForm = this.fb.group ({

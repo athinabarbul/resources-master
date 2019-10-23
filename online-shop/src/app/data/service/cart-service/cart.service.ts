@@ -21,6 +21,7 @@ export class CartService {
 
   userDetails: UserModel;
   userList$: Observable<UserModel>;
+  newCartItem: CartItemModel;
   
   constructor(private http: HttpClient, private router: Router,
     private authService: AuthService, private store: Store<AppState>) {
@@ -34,8 +35,7 @@ export class CartService {
 
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
-      
-  
+    
     if (this.authService.userCart.length === 0) {
       this.authService.userCart.push(new CartItemModel(product.id, product.name, product.category, product.price, product.description, product.image, 1));
     }
@@ -102,7 +102,6 @@ export class CartService {
       .subscribe(
         val => {
           this.loadCartItems();
-          // this.router.navigate(['/shopping-cart']);
           this.authService.userCart = <CartItemModel[]>(<UserModel>val).cart;
           console.log("POST call successful value returned in body",
             val);

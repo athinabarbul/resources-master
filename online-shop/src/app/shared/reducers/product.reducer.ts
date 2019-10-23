@@ -20,7 +20,6 @@ export const initialState: ProductState = {
   ): ProductState {
     switch (action.type) {
       case fromProduct.ActionTypes.LoadProductDataBegin: {
-        debugger
         return {
           ...state,
           loading: true,
@@ -29,7 +28,6 @@ export const initialState: ProductState = {
       }
   
       case fromProduct.ActionTypes.LoadProductDataSuccess: {
-        debugger
         return {
           ...state,
           loading: false,
@@ -38,7 +36,6 @@ export const initialState: ProductState = {
       }
   
       case fromProduct.ActionTypes.LoadProductDataFailure: {
-        debugger
         return {
           ...state,
           loading: false,

@@ -14,7 +14,6 @@ export class ProductsEffect {
   loadData = this.actions.pipe(
     ofType(ProductsActions.ActionTypes.LoadDataBegin),
     switchMap(() => {
-      debugger
       return this.productService.getProducts().pipe(
         map(data => new ProductsActions.LoadDataSuccess({ data: data })),
         catchError(error =>

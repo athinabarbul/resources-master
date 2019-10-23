@@ -7,9 +7,10 @@ import { ProductService } from '../../data/service/product-service/product.servi
 import { ActivatedRoute } from '@angular/router';
 import {  Router } from '@angular/router';
 import * as ProductsActions from "../../shared/actions/products.actions";
-
 import {  HttpClient  } from "@angular/common/http";
 import { Store } from '@ngrx/store';
+import { CartItemModel } from 'src/app/data/schema/cart-item-model';
+import * as CartActions from "../../shared/actions/cart.actions";
 
 @Component({
   selector: 'app-product',
@@ -26,7 +27,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   constructor(private httpClient: HttpClient, private route: ActivatedRoute, private productService: ProductService,
     private cartService: CartService, private router: Router,
-    private store: Store<{fromProducts: {products: ProductModel[]}}>) { }
+    private store: Store<{fromProducts: {products: ProductModel[]}}>,
+    private storeCart: Store<{fromCart: {cartItem: CartItemModel[]}}>) { }
 
   ngOnInit() {
 
@@ -39,8 +41,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   addProductToCart(): void {
+    this.storeCart.dispatch(new CartActions.AddNewCartProduct(this.cartService.newCartItem));
     this.cartService.addProductToCart(this.currentProduct);
-    alert('Product ' + this.currentProduct.name +  ' added to cart');
   }
 
   deleteProduct(): void {

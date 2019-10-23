@@ -111,7 +111,6 @@ export class ProductService {
   }
 
   getItems() {
-    debugger
     return this.store.select(getAllItems);
   }
 
@@ -124,7 +123,6 @@ export class ProductService {
   }
 
   getSingleProductItem() {
-    debugger
     return this.store.select(getProductItem);
   }
 }
