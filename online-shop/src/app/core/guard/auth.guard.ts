@@ -8,8 +8,8 @@ import {
   import { Injectable } from '@angular/core';
   import { Observable } from 'rxjs';
   import { map, tap, take } from 'rxjs/operators';
-  import { AuthService } from 'src/app/data/service/auth.service';
-import { CartService } from 'src/app/data/service/cart.service';
+  import { AuthService } from 'src/app/data/service/auth-service/auth.service';
+import { CartService } from 'src/app/data/service/cart-service/cart.service';
 
 
 

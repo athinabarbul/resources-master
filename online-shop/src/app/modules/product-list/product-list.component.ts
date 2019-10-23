@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map'
 import * as _ from 'lodash';
 
 import { ProductModel } from '../../data/schema/product-model';
-import { ProductService } from '../../data/service/product.service';
+import { ProductService } from '../../data/service/product-service/product.service';
 import { Subscription } from 'rxjs';
 
 
@@ -29,6 +29,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
      this.listOfProductsObserv$ = this.productService.getItems();
      this.listOfProductsSubscription = this.listOfProductsObserv$.subscribe( data => {
        this.listOfProducts = data;
+       this.productService.lastId = data.length;
      })
   }
 

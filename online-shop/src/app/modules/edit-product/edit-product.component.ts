@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule, Router } from '@angular/router';
-import { ProductService } from '../../data/service/product.service';
+import { ProductService } from '../../data/service/product-service/product.service';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';

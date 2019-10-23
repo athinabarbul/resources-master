@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { CartItemModel } from '../schema/cart-item-model'
-import { ProductModel } from '../schema/product-model'
+import { CartItemModel } from '../../schema/cart-item-model'
+import { ProductModel } from '../../schema/product-model'
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map'
 import * as _ from 'lodash';
-import { UserModel } from '../schema/user';
-import { AuthService } from './auth.service';
+import { UserModel } from '../../schema/user';
+import { AuthService } from '../auth-service/auth.service';
 
 
 import { Store } from "@ngrx/store";
-import * as CartActions from "../../shared/actions/cart.actions";
-import { AppState, getAllCartItems, getCartState } from "../../shared/reducers";
+import * as CartActions from "../../../shared/actions/cart.actions";
+import { AppState, getAllCartItems, getCartState } from "../../../shared/reducers";
 
 @Injectable({
   providedIn: 'root'

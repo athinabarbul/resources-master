@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { map, switchMap, catchError } from "rxjs/operators";
 import { of } from "rxjs";
-import { AuthService } from 'src/app/data/service/auth.service';
+import { AuthService } from 'src/app/data/service/auth-service/auth.service';
 import * as CartActions from "../actions/cart.actions";
 
 @Injectable()

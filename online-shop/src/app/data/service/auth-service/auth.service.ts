@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { UserModel } from '../schema/user';
+import { UserModel } from '../../schema/user';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
-import { Role } from '../schema/role';
-import { CartItemModel } from '../schema/cart-item-model';
+import { Role } from '../../schema/role';
+import { CartItemModel } from '../../schema/cart-item-model';
 
 @Injectable({
     providedIn: 'root'

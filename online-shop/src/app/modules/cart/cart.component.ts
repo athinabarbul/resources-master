@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartItemModel } from '../../data/schema/cart-item-model'
 import { Observable } from 'rxjs/Observable';
-import { CartService } from '../../data/service/cart.service'
+import { CartService } from '../../data/service/cart-service/cart.service'
 import { Subscription } from 'rxjs';
 import { debug } from 'util';
 

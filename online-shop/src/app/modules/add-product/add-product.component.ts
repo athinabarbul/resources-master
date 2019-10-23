@@ -4,7 +4,7 @@ import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ProductModel } from '../../data/schema/product-model';
 import { ActivatedRoute } from '@angular/router';
 import { RouterModule, Router } from '@angular/router';
-import { ProductService } from '../../data/service/product.service';
+import { ProductService } from '../../data/service/product-service/product.service';
 import * as fromProducts from "../../shared/reducers/products.reducer";
 import { Store } from '@ngrx/store';
 import * as ProductsActions from "../../shared/actions/products.actions";
@@ -27,7 +27,6 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.id = Math.floor(Math.random() * 10001);
   }
 
   createForm() {
@@ -41,14 +40,17 @@ export class AddProductComponent implements OnInit {
   }
 
   saveProductDetails(): void{
-
-    this.store.dispatch(new ProductsActions.AddNewProduct(new ProductModel(this.id,
+    console.log(this.productService.lastId);
+    this.productService.newProduct = new ProductModel(this.productService.lastId,
       this.addProductForm.value.name,
       this.addProductForm.value.category,
       this.addProductForm.value.price,
       this.addProductForm.value.image,
-      this.addProductForm.value.description)));
-    
+      this.addProductForm.value.description);
+
+      
+      this.store.dispatch(new ProductsActions.AddNewProduct(this.productService.newProduct));
+      this.productService.addProduct(); 
       this.router.navigate(['/product-list']);
 
   }
