@@ -40,7 +40,7 @@ export class AddProductComponent implements OnInit {
   }
 
   saveProductDetails(): void{
-    console.log(this.productService.lastId);
+    
     this.productService.newProduct = new ProductModel(this.productService.lastId,
       this.addProductForm.value.name,
       this.addProductForm.value.category,

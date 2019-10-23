@@ -26,12 +26,16 @@ export class ProductComponent implements OnInit, OnDestroy {
     private cartService: CartService, private router: Router) { }
 
   ngOnInit() {
-    this.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.product$ = this.productService.getProductById(this.id);
+
+    this.product$ = this.productService.getSingleProductItem();
 
     this.productSubscription = this.product$.subscribe(product => {
-          this.currentProduct = product;
-    })
+      this.currentProduct = product;
+})
+    // this.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    // this.product$ = this.productService.getProductById();
+
+
   }
 
   addProductToCart(): void {

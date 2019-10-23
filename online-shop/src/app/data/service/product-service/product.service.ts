@@ -9,7 +9,9 @@ import { Store } from "@ngrx/store";
 import { ProductModel } from '../../schema/product-model';
 
 import * as ProductsActions from "../../../shared/actions/products.actions";
-import { AppState, getAllItems, getProductsState } from "../../../shared/reducers";
+import * as ProductActions from "../../../shared/actions/product.actions";
+
+import { AppState, getAllItems, getProductsState, getProductItem, getProductState } from "../../../shared/reducers";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,9 @@ import { AppState, getAllItems, getProductsState } from "../../../shared/reducer
 export class ProductService {
 
   newProduct: ProductModel;
+  updatedProduct: ProductModel;
   lastId: number;
+  navigateToProductId: number;
 
   constructor(private store: Store<AppState>, private http: HttpClient) {
   }
@@ -26,8 +30,8 @@ export class ProductService {
     return this.http.get<ProductModel[]>('http://localhost:3000/products');
   }
 
-  public getProductById(id: number): Observable<ProductModel> {
-    return this.http.get<ProductModel>('http://localhost:3000/products/' + id);
+  public getProductById(): Observable<ProductModel> {
+    return this.http.get<ProductModel>('http://localhost:3000/products/' + this.navigateToProductId);
   }
 
   public addProduct(): void {
@@ -57,6 +61,36 @@ export class ProductService {
 
   }
 
+  public updateProduct(): void {
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json");
+
+    this.http.put('http://localhost:3000/products/' + this.updatedProduct.id,
+      {
+        "id": this.updatedProduct.id,
+        "name":  this.updatedProduct.name,
+        "category": this.updatedProduct.category,
+        "price": this.updatedProduct.price,
+        "image": this.updatedProduct.image,
+        "description": this.updatedProduct.description
+      },
+      { headers })
+      .subscribe(
+        val => {
+          console.log("PUT call successful value returned in body",
+            val);
+            
+        },
+        response => {
+          console.log("PUT call in error", response);
+        },
+        () => {
+          console.log("The PUT observable is now completed.");
+        }
+      );
+  }
+
+
   load() {
     this.store.dispatch(new ProductsActions.LoadDataBegin());
   }
@@ -66,6 +100,20 @@ export class ProductService {
   }
 
   getItems() {
+    debugger
     return this.store.select(getAllItems);
+  }
+
+  loadSingleProduct() {
+    this.store.dispatch(new ProductActions.LoadProductDataBegin());
+  }
+
+  getProductData() {
+    return this.store.select(getProductState);
+  }
+
+  getSingleProductItem() {
+    debugger
+    return this.store.select(getProductItem);
   }
 }

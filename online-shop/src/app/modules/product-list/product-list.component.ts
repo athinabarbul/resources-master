@@ -29,13 +29,17 @@ export class ProductListComponent implements OnInit, OnDestroy{
      this.listOfProductsObserv$ = this.productService.getItems();
      this.listOfProductsSubscription = this.listOfProductsObserv$.subscribe( data => {
        this.listOfProducts = data;
-       this.productService.lastId = data.length;
+       debugger
+       this.productService.lastId = data.length;      
      })
+     
   }
 
 
   goToProductDetails(i: number): void {
-  this.router.navigate(['/product/' + this.listOfProducts[i].id]);
+  this.productService.navigateToProductId = this.listOfProducts[i].id;
+  this.productService.loadSingleProduct();
+  this.router.navigate(['/product/' + this.productService.navigateToProductId]);
   }
 
   ngOnDestroy() {

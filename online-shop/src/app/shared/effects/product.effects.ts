@@ -3,22 +3,22 @@ import { Actions, Effect, ofType } from "@ngrx/effects";
 import { map, switchMap, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { ProductService } from 'src/app/data/service/product-service/product.service';
-import * as ProductsActions from "../actions/products.actions";
+import * as ProductActions from "../actions/product.actions";
 import { ProductModel } from 'src/app/data/schema/product-model';
 
 @Injectable()
-export class ProductsEffect {
+export class ProductEffect {
   constructor(private actions: Actions, private productService: ProductService) {}
 
   @Effect()
-  loadData = this.actions.pipe(
-    ofType(ProductsActions.ActionTypes.LoadDataBegin),
+  loadProductData = this.actions.pipe(
+    ofType(ProductActions.ActionTypes.LoadProductDataBegin),
     switchMap(() => {
       debugger
-      return this.productService.getProducts().pipe(
-        map(data => new ProductsActions.LoadDataSuccess({ data: data })),
+      return this.productService.getProductById().pipe(
+        map(data => new ProductActions.LoadProductDataSuccess({ data: data })),
         catchError(error =>
-          of(new ProductsActions.LoadDataFailure({ error: error }))
+          of(new ProductActions.LoadProductDataFailure({ error: error }))
         )
       );
     })

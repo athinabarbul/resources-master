@@ -1,13 +1,14 @@
 import * as fromProduct from "../actions/products.actions";
 import { ProductModel } from 'src/app/data/schema/product-model';
 
-export interface ProductState {
+
+export interface ProductsState {
     items: ProductModel[];
     loading: boolean;
     error: any;
   }
 
-export const initialState: ProductState = {
+export const initialState: ProductsState = {
     items: [],
     loading: false,
     error: null
@@ -16,7 +17,7 @@ export const initialState: ProductState = {
   export function reducer(
     state = initialState,
     action: fromProduct.ActionsUnion
-  ): ProductState {
+  ): ProductsState {
     switch (action.type) {
       case fromProduct.ActionTypes.LoadDataBegin: {
         return {
@@ -49,6 +50,28 @@ export const initialState: ProductState = {
           items: [...state.items, action.payload]
         };
 
+        case fromProduct.ActionTypes.UpdateProduct:
+           const product = state.items[action.payload.index];
+           const updatedProduct ={
+             ...product,
+             ...action.payload.product
+           };
+           const updatedProductList = [...state.items];
+           updatedProductList[action.payload.index] = updatedProduct;
+
+           return{
+             ...state,
+             items: updatedProductList
+           };
+
+        case fromProduct.ActionTypes.DeleteProduct:
+          return {
+            ...state,
+            items: state.items.filter((ig, igIndex) => {
+              return igIndex != action.payload;
+            })
+          }
+
   
       default: {
         return state;
@@ -56,4 +79,4 @@ export const initialState: ProductState = {
     }
   }
   
-  export const getItems = (state: ProductState) => state.items;
+  export const getItems = (state: ProductsState) => state.items;
