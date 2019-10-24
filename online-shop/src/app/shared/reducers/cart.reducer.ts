@@ -48,6 +48,15 @@ export const initialState: CartState = {
           loading:null,
           items: [...state.items, action.payload]
         };
+
+        case fromCart.ActionTypes.DeleteCartProduct:
+            return {
+              ...state,
+              items: state.items.filter((ig, igIndex) => {
+                return igIndex != action.payload;
+              })
+            }
+  
   
       default: {
         return state;

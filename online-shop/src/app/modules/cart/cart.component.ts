@@ -3,7 +3,10 @@ import { CartItemModel } from '../../data/schema/cart-item-model'
 import { Observable } from 'rxjs/Observable';
 import { CartService } from '../../data/service/cart-service/cart.service'
 import { Subscription } from 'rxjs';
-import { debug } from 'util';
+import { AuthService } from 'src/app/data/service/auth-service/auth.service';
+import * as CartActions from "../../shared/actions/cart.actions";
+import { Store } from '@ngrx/store';
+
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +19,8 @@ export class CartComponent implements OnInit, OnDestroy {
   cartList: CartItemModel[];
   cartSubscription: Subscription;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private authService: AuthService,
+    private store: Store<{fromCart: {cartItem: CartItemModel[]}}>) { }
 
   ngOnInit() {
 
@@ -28,12 +32,13 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   removeCartItem(i:number) : void{
-    
-    if (this.cartList[i].quantity == 1) {
-      this.cartList.splice(i, 1);
+
+    this.store.dispatch(new CartActions.DeleteCartProduct(i));    
+    if (this.authService.userCart[i].quantity == 1) {
+      this.authService.userCart.splice(i, 1);
     }
     else {
-      this.cartList[i].quantity--;
+      this.authService.userCart[i].quantity--;
     }
 
     this.cartService.removeProductFromCart(i);

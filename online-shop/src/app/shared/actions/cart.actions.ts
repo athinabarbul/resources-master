@@ -5,7 +5,8 @@ export enum ActionTypes {
   LoadDataBegin =   "[CartLoad] Load data begin",
   LoadDataSuccess = "[CartLoad] Load data success",
   LoadDataFailure = "[CartLoad] Load data failure",
-  AddNewCartProduct = "[AddNewCartProduct] Add new cart item"
+  AddNewCartProduct = "[AddNewCartProduct] Add new cart item",
+  DeleteCartProduct = "[DeleteCartProduct] Delete cart product"
 }
 
 export class LoadDataBegin implements Action {
@@ -29,4 +30,9 @@ export class AddNewCartProduct implements Action{
   constructor(public payload: CartItemModel){}
 }
 
-export type ActionsUnion = LoadDataBegin | LoadDataSuccess | LoadDataFailure | AddNewCartProduct;
+export class DeleteCartProduct implements Action{
+  readonly type = ActionTypes.DeleteCartProduct;
+  constructor(public payload:  number) {}
+}
+
+export type ActionsUnion = LoadDataBegin | LoadDataSuccess | LoadDataFailure | AddNewCartProduct | DeleteCartProduct;
