@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { ProductModel } from '../../data/schema/product-model';
-import { ActivatedRoute } from '@angular/router';
-import { RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProductService } from '../../data/service/product-service/product.service';
-import * as fromProducts from "../../shared/reducers/products.reducer";
 import { Store } from '@ngrx/store';
 import * as ProductsActions from "../../shared/actions/products.actions";
 

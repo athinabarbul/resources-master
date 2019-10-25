@@ -11,7 +11,7 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { RoleGuard } from './core/guard/role.guard';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'product/:id', component: ProductComponent, canActivate: [AuthGuard] },
   { path: 'product-list', component: ProductListComponent, canActivate: [AuthGuard]},
   { path: 'shopping-cart', component: CartComponent, canActivate: [RoleGuard], 

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy  } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import {  Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
@@ -22,7 +21,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
   listOfProducts: ProductModel[] = [];
   listOfProductsObserv$: Observable<ProductModel[]>;
 
-    constructor(private http: HttpClient, private router: Router,
+    constructor(private router: Router,
        private productService: ProductService, private cartService: CartService) {
   }
 

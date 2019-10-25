@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './modules/product/product.component';
 import { ProductListComponent } from './modules/product-list/product-list.component';
@@ -24,7 +23,8 @@ import { EffectsModule } from "@ngrx/effects";
 
 import { reducers, metaReducers  } from './shared/reducers';
 import { effects } from './shared/effects';
-
+import { RouterModule } from '@angular/router';
+import { routes } from './app-routing.module';
 @NgModule({
 
   declarations: [
@@ -41,16 +41,19 @@ import { effects } from './shared/effects';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule ,
+    FormsModule, 
     ReactiveFormsModule,
+    RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatButtonModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects)
     
   ],
-  providers: [AuthGuard,RoleGuard],
+  providers: [AuthGuard,RoleGuard,HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
