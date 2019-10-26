@@ -34,6 +34,7 @@ describe('ProductsEffect', () => {
     });
   
     describe('[ProductsLoad] Load data begin products', () => {
+      
       it('should return a stream with product list loaded action', () => {
         const productsLoad: ProductModel = {       
             "id":1,
