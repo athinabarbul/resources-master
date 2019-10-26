@@ -1,12 +1,12 @@
 import { Observable, of } from "rxjs";
+import { cold, hot } from 'jasmine-marbles';
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+
 import { ProductsEffect } from './products.effects';
 import { ProductService } from 'src/app/data/service/product-service/product.service';
-import { TestBed } from '@angular/core/testing';
 import { ProductModel } from 'src/app/data/schema/product-model';
-import { LoadDataBegin, LoadDataSuccess } from '../actions/products.actions';
-import { cold, hot } from 'jasmine-marbles';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { LoadDataFailure } from '../actions/products.actions';
+import { LoadDataBegin, LoadDataSuccess, LoadDataFailure } from '../actions/products.actions';
 
 describe('ProductsEffect', () => {
     let actions: Observable<any>;
@@ -14,17 +14,7 @@ describe('ProductsEffect', () => {
     let effects: ProductsEffect;
     let productsService: jasmine.SpyObj<ProductService>;
 
-    // const MockProductService = {
-    //   getProducts () {
-    //     return of({       
-    //       "id":1,
-    //       "name":"Notebook Basic 17",
-    //       "category":"Laptops",
-    //       "image":"https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1001.jpg",
-    //       "price":1249,
-    //       "description":"Notebook Basic 17 with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro" 
-    //   })}};
-  
+
     beforeEach(() => {
       TestBed.configureTestingModule({
         providers: [
@@ -66,19 +56,17 @@ describe('ProductsEffect', () => {
 
       });
   
-      // it('should fail and return an action with the error', () => {
-      //   const action = new LoadDataBegin();
-      //   const error = new Error('some error') as any;
-      //   const outcome = new LoadDataFailure(error);  
+      it('should fail and return an action with the error', () => {
+        const action = new LoadDataBegin();
+        const error = new Error('some error') as any;
+        const outcome = new LoadDataFailure({error});  
         
-      //   actions = hot('-a', { a: action });
-
-      //   const response = cold('-#|', {}, error);
-      //   productsService.getProducts.and.returnValue(response);
+        actions = hot('-a|', { a: action });
+        const response = cold('-#|', {}, error);
+        productsService.getProducts.and.returnValue(response);
         
-  
-      //   const expected = cold('--(b|)', { b: outcome });
-      //   expect(effects.loadData$).toBeObservable(expected);
-      // });
+        const expected = cold('--(b|)', { b: outcome });
+        expect(effects.loadData$).toBeObservable(expected);
+      });
     });
   });
