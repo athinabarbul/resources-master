@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { UserModel } from '../../schema/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
 import { Role } from '../../schema/role';
@@ -21,7 +20,7 @@ import { CartItemModel } from '../../schema/cart-item-model';
     userCart : CartItemModel[];
     username: string;
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient) {
     }
 
     getCurrentUserDetails() : Observable<UserModel> {

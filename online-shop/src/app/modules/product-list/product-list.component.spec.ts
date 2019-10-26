@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 
 import { ProductListComponent } from './product-list.component';
 import { ProductService } from 'src/app/data/service/product-service/product.service';
@@ -11,7 +10,6 @@ import { Router, NavigationExtras } from '@angular/router';
 describe('ProductListComponent', () => {
   let component: ProductListComponent;
   let fixture: ComponentFixture<ProductListComponent>;
-  const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
 
   const mockProductList : ProductModel[] = [
     {
@@ -39,7 +37,6 @@ describe('ProductListComponent', () => {
 
   const mockCartService = {
     loadCartItems(){
-
     }
   }
 
@@ -65,10 +62,6 @@ describe('ProductListComponent', () => {
         {
           provide: Router,
           useValue: mockRouter
-        },
-        { 
-          provide: Router,
-          useValue: routerSpy
         }
       ]
     })

@@ -39,13 +39,6 @@ export class AddProductComponent implements OnInit {
 
   saveProductDetails(): void{
   
-
-    // this.productService.newProduct = new ProductModel(this.productService.lastId,
-    //   this.addProductForm.value.name,
-    //   this.addProductForm.value.category,
-    //   this.addProductForm.value.price,
-    //   this.addProductForm.value.image,
-    //   this.addProductForm.value.description);
    const id= this.productService.lastId;
       this.productService.newProduct={id,... this.addProductForm.value};
       

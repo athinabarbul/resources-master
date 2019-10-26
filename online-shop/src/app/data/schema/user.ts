@@ -6,15 +6,13 @@ export class UserModel {
     fullName: string;
     roles: Role;
     cart: CartItemModel[];
-    token?: string;
-  
+
     constructor(username:string, fullName: string, roles: Role,
-      cart: CartItemModel[], token?:string) {
+      cart: CartItemModel[]) {
       this.username = username;
       this.fullName = fullName;
       this.roles = roles;
       this.cart = cart;
-      this.token = token;
     }
     
   }
