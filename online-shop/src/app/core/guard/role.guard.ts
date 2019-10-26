@@ -5,8 +5,6 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { AuthService } from 'src/app/data/service/auth-service/auth.service';
-import { Role } from 'src/app/data/schema/role';
-
 
 @Injectable()
 export class RoleGuard implements CanActivate {
@@ -17,7 +15,6 @@ export class RoleGuard implements CanActivate {
     const expectedRole = route.data.expectedRole;
     let roleFlag = false;
 
-
      for(let roleMember in this.authService.userRole){
          for(let expectedRoleMember in expectedRole){
              
@@ -26,7 +23,6 @@ export class RoleGuard implements CanActivate {
              }
          }
      }
-
     if (
       !this.authService.isAuthenticated || 
       !roleFlag

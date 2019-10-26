@@ -1,13 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RouterModule, Router } from '@angular/router';
-import { ProductService } from '../../data/service/product-service/product.service';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import { ProductModel } from '../../data/schema/product-model';
+
 import { Store } from '@ngrx/store';
+
+import { ProductService } from '../../data/service/product-service/product.service';
+import { ProductModel } from '../../data/schema/product-model';
 import * as ProductsActions from "../../shared/actions/products.actions";
 
 

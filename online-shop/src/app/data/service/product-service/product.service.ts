@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import * as _ from 'lodash';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do'
-import { Store } from "@ngrx/store";
-import { ProductModel } from '../../schema/product-model';
 
+import { Store } from "@ngrx/store";
+
+import { ProductModel } from '../../schema/product-model';
 import * as ProductsActions from "../../../shared/actions/products.actions";
 import * as ProductActions from "../../../shared/actions/product.actions";
 

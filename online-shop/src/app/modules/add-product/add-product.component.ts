@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
-import { ProductModel } from '../../data/schema/product-model';
 import { Router } from '@angular/router';
-import { ProductService } from '../../data/service/product-service/product.service';
+
 import { Store } from '@ngrx/store';
+
+import { ProductModel } from '../../data/schema/product-model';
+import { ProductService } from '../../data/service/product-service/product.service';
 import * as ProductsActions from "../../shared/actions/products.actions";
 
 @Component({
@@ -17,8 +19,6 @@ export class AddProductComponent implements OnInit {
   addProductForm: FormGroup;
   id: number;
   
-
-
   constructor(private fb: FormBuilder, private http: HttpClient,
      private router: Router, private productService:ProductService,
      private store: Store<{fromProducts: {products: ProductModel[]}}>) { }

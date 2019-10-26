@@ -1,8 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
+
 import { Subscription } from 'rxjs';
+
 import { AuthService } from 'src/app/data/service/auth-service/auth.service';
 import { ProductService } from 'src/app/data/service/product-service/product.service';
 
@@ -12,7 +14,6 @@ import { ProductService } from 'src/app/data/service/product-service/product.ser
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnDestroy {
-
 
   loginForm: FormGroup;
   isLoading = false;
@@ -35,7 +36,7 @@ export class AuthComponent implements OnDestroy {
   }
 
   login(){
-
+    
     this.isLoading = true;
        
       this.loginSubscription = this.authService.loginObsv(this.loginForm.value.userName, 

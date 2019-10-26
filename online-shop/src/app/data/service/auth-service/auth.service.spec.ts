@@ -1,11 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../../schema/user';
 import { Role } from '../../schema/role';
 import { of } from 'rxjs/internal/observable/of';
-
 
 describe('AuthService', () => {
 

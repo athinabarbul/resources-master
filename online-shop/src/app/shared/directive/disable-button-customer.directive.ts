@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit, Input } from '@angular/core';
+import { Directive, ElementRef, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/data/service/auth-service/auth.service';
 import { Role } from 'src/app/data/schema/role';
 

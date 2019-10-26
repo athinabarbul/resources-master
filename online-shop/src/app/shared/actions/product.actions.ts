@@ -1,5 +1,4 @@
 import { Action } from "@ngrx/store";
-import { ProductModel } from 'src/app/data/schema/product-model';
 
 export enum ActionTypes {
     LoadProductDataBegin = "[ProductsLoad] Load data begin product",

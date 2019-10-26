@@ -1,12 +1,10 @@
 import {
-    ActionReducer,
     ActionReducerMap,
-    createFeatureSelector,
     createSelector,
     MetaReducer
   } from "@ngrx/store";
-  import { environment } from "../../../environments/environment";
   
+  import { environment } from "../../../environments/environment";
   import * as fromProducts from "./products.reducer";
   import * as fromProduct from "./product.reducer";
   import * as fromCart from "./cart.reducer";

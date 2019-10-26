@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router, NavigationExtras } from '@angular/router';
+
+import { of } from 'rxjs/internal/observable/of';
 
 import { ProductListComponent } from './product-list.component';
 import { ProductService } from 'src/app/data/service/product-service/product.service';
 import { ProductModel } from 'src/app/data/schema/product-model';
-import { of } from 'rxjs/internal/observable/of';
 import { CartService } from 'src/app/data/service/cart-service/cart.service';
-import { Router, NavigationExtras } from '@angular/router';
 
 describe('ProductListComponent', () => {
   let component: ProductListComponent;

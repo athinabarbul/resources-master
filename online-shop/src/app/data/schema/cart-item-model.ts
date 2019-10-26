@@ -1,7 +1,4 @@
-import { ProductModel } from './product-model';
-
 export class CartItemModel {
-
   quantity: number;
   id: number;
   name: string;
@@ -19,6 +16,4 @@ export class CartItemModel {
     this.description = description;
     this.quantity = quantity;
   }
-
-
 }

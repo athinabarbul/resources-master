@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductModel } from '../../data/schema/product-model';
+import { Router, ActivatedRoute } from '@angular/router';
+import {  HttpClient  } from "@angular/common/http";
+
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
+import { ProductModel } from '../../data/schema/product-model';
 import { CartService } from '../../data/service/cart-service/cart.service';
 import { ProductService } from '../../data/service/product-service/product.service';
-import { ActivatedRoute } from '@angular/router';
-import {  Router } from '@angular/router';
 import * as ProductsActions from "../../shared/actions/products.actions";
-import {  HttpClient  } from "@angular/common/http";
-import { Store } from '@ngrx/store';
 import { CartItemModel } from 'src/app/data/schema/cart-item-model';
 import * as CartActions from "../../shared/actions/cart.actions";
 

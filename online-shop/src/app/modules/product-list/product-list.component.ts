@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy  } from '@angular/core';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 import * as _ from 'lodash';
 
 import { ProductModel } from '../../data/schema/product-model';
 import { ProductService } from '../../data/service/product-service/product.service';
-import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/data/service/cart-service/cart.service';
 
 
