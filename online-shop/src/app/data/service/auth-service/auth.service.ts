@@ -66,8 +66,7 @@ import { CartItemModel } from '../../schema/cart-item-model';
         localStorage.setItem('userData', JSON.stringify(user));
       }
 
-      hasPermission(permission: Role) {
-        
+      hasPermission(permission: Role) {    
         if(Object.values(this.userRole).includes(permission)){
           return true;
         }

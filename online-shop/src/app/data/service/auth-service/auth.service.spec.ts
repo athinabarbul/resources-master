@@ -4,15 +4,13 @@ import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../../schema/user';
 import { Role } from '../../schema/role';
+import { of } from 'rxjs/internal/observable/of';
 
 
 describe('AuthService', () => {
-    let component: AuthService;
-    let fixture: ComponentFixture<AuthService>;
 
     let authService: AuthService;
     let mockHttp : HttpClient;
-
 
     const mockUserLogin = 
     {
@@ -20,41 +18,40 @@ describe('AuthService', () => {
         "password" : "password"
     }
 
-    beforeEach(() => { authService = new AuthService(mockHttp); });
+    const mockUserDetails : UserModel = 
+    {
+      "username":"doej",
+      "fullName":"John Doe",
+      "roles": Role["customer"],
+      "cart":[]
+    }
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-          declarations: [ AuthService ],
-          providers: [
-            {
-              provide: HttpClient,
-              useValue: mockHttp
-            }
-          ]
-        })
-        .compileComponents();
-      }));
-    
-      beforeEach(() => {
-        fixture = TestBed.createComponent(AuthService);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
+    beforeEach(() => { authService = new AuthService(mockHttp); 
+      spyOn(authService, "loginObsv").and.returnValue(of(mockUserLogin));
+      spyOn(authService, "getCurrentUserDetails").and.returnValue(of(mockUserDetails));
+      spyOn(authService, "hasPermission").and.returnValue(true);
+    }); 
+  
+    it('loginObsv should return value from observable',
+      (done: DoneFn) => {
+        authService.loginObsv("doej", "password").subscribe(value => {
+        expect(value).toBe(mockUserLogin);
+        done();
       });
-  
-  
-    // it('#getObservableValue should return value from observable',
-    //   (done: DoneFn) => {
-    //     authService.loginObsv("doej", "password").subscribe(value => {
-    //     expect(value).toBe(mockUserLogin);
-    //     done();
-    //   });
-    // });
-  
-    // it('#getPromiseValue should return value from a promise',
-    //   (done: DoneFn) => {
-    //     authService.getPromiseValue().then(value => {
-    //     expect(value).toBe('promise value');
-    //     done();
-    //   });
-    // });
+    });
+
+    it('getCurrentUserDetails should return value from observable',
+    (done: DoneFn) => {
+      authService.getCurrentUserDetails().subscribe(value => {
+      expect(value).toBe(mockUserDetails);
+      done();
+    });
+   });
+
+   it('hasPermission should return true if user has permission of admin',() => {
+    expect(authService.hasPermission(Role["admin"])).toBe(true);
+   });
+
   });
+
+ 

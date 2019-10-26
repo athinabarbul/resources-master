@@ -2,16 +2,18 @@ import { reducer, initialState } from "./products.reducer";
 import { AddNewProduct, UpdateProduct, LoadDataBegin, LoadDataSuccess, LoadDataFailure, DeleteProduct } from '../actions/products.actions';
 import { ProductModel } from 'src/app/data/schema/product-model';
 
-describe('undefined action', () => {
-    it('should return the default state', () => {
-      const action = { type: 'NOOP' } as any;
-      const result = reducer(undefined, action);
-  
-      expect(result).toBe(initialState);
-    });
-  });
 
-  describe('reducer', () => {
+  describe('ProductsReducer', () => {
+
+    describe('default state', () => {
+      it('should return the default state', () => {
+        const action = { type: 'NOOP' } as any;
+        const result = reducer(undefined, action);
+    
+        expect(result).toBe(initialState);
+      });
+    });
+
     describe('[ProductNew] Adding new product', () => {
       let mockProduct = new ProductModel(1,
             "Notebook Basic 17", "Laptops", 1248, "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1001.jpg",
