@@ -34,7 +34,7 @@ describe('user to product details', function () {
     it('product list should display a list of products', () => {
       authPage.navigateTo();
       authPage.fillCredentials();
-      expect(productsPage.getProductElements().count()).toBe(51);
+      expect(productsPage.getProductElements().count()).toBe(52);
     }); 
 
     it('should open and view the first product', () => {

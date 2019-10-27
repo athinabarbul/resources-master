@@ -81,17 +81,17 @@ describe('ProductListComponent', () => {
 
   it('h2 category should show product category', () => {
     let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll(('h2'))[0].textContent).toContain(mockProductList[0].category);
+    expect(compiled.querySelectorAll(('h4'))[0].textContent).toContain(mockProductList[0].category);
   });
 
   it('h2 name should show product name', () => {
     let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll(('h2'))[1].textContent).toContain(mockProductList[0].name);
+    expect(compiled.querySelectorAll(('h4'))[1].textContent).toContain(mockProductList[0].name);
   });
 
   it('h2 price should show product price', () => {
     let compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll(('h2'))[2].textContent).toContain(mockProductList[0].price);
+    expect(compiled.querySelectorAll(('h4'))[2].textContent).toContain(mockProductList[0].price);
   });
 
 
