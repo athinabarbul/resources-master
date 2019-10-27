@@ -44,7 +44,6 @@ import { CartItemModel } from '../../schema/cart-item-model';
             this.userRole = resData.roles;
             this.userLoggedIn = resData.username,
             this.userCart = resData.cart,
-            console.log(this.userCart);
             this.handleAuthentication(
               resData.username,
               resData.fullName,

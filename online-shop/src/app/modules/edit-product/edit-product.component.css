@@ -5,7 +5,7 @@
 .edit-name{
   font-size: 5rem;
   letter-spacing: .5rem;
-  font-weight: bold;
+  font-weight: 300;
 }
 
 .edit-form{
@@ -20,5 +20,16 @@
 .btn-product{
   font-size: 2.5rem;
   text-align: center;
-  width: 100%;
+  width: 75%;
+}
+.btn-product-save{
+  background-color: #6e2142;
+  color: white;
+  font-size: 2.5rem;
+  text-align: center;
+  width: 75%;
+}
+
+.btn-product-save:hover{
+  background-color: #e16363;
 }

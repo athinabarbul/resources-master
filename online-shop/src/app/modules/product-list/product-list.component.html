@@ -3,7 +3,8 @@
   <div class="row">
     <div class="col-md-10">
       <h1 class="product-name">Products</h1>
-    </div>
+      <hr>
+    </div> 
     <div class="col-md">
       <button routerLink="/shopping-cart" disableIfNotCustomer class="btn text-white btn-product-cart"><i class="fa fa-shopping-cart"></i></button>
     </div>
@@ -18,19 +19,27 @@
     <div class="col">
       <div *ngIf="listOfProductsObserv$ | async as listOfProducts">
       <table id ="productList" class="table table-bordered">
+          <thead class="table-header">
+              <tr class="text-center">
+                <th scope="col"><h3>CATEGORY</h3></th>
+                <th scope="col"><h3>NAME</h3></th>
+                <th scope="col"><h3>PRICE</h3></th>
+                <th scope="col"><h3>MORE</h3></th>
+              </tr>
+            </thead>
           <ng-container *ngFor="let product of listOfProducts; let i=index">
-            <tr class="text-align-center">
+            <tr class="table-row m-5 text-align-center">
               <td>
-                <h2 class = "category">{{product.category}}</h2>
+                <h4>{{product.category}}</h4>
               </td>
               <td>
-                <h2>{{product.name}}</h2>
+                <h4>{{product.name}}</h4>
               </td>
               <td>
-                <h2>{{product.price}}</h2>
+                <h4>{{product.price}}</h4>
               </td>
               <td>
-                <a routerLink="/product" style="color:#9852f9;" (click)="goToProductDetails(i)"><i class="fa fa-chevron-right fa-3x"></i></a>
+                <a class="product-details-a" routerLink="/product" (click)="goToProductDetails(i)"><i class="fa fa-chevron-right fa-3x"></i></a>
               </td>
             </tr>
           </ng-container>

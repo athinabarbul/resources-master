@@ -10,23 +10,24 @@
           </div>
         <div class="card login-card w-50 p-5"  *ngIf="!isLoading">
         <div class="card-body">
-          <h5 class="card-title login-name">Sign In</h5>
-          <hr class="hr-card">
-          <section class="login-form">
+          <h1 class="card-title login-name mb-5 text-center">SIGN IN</h1>
+          <img src="../../../assets/images/logo.png" alt="" class="img-fluid image-center w-25 mb-5">
+          <hr class="hr-card mb-5">
+          <section class="login-form mb-5">
             <form [formGroup]="loginForm" (ngSubmit)="login()" required >
               
             <div class="form-group">
               <label for="userName">User Name:</label>
-              <input formControlName="userName" name="username" type="text" class="form-control" id="userName" aria-describedby="emailHelp" required>
+              <input formControlName="userName" name="username" type="text" class="form-control form-control-lg" id="userName" aria-describedby="emailHelp" required>
             </div>
             <div class="form-group">
               <label for="userPassword">Password:</label>
-              <input formControlName="userPassword" name= "password" type="password" class="form-control" id="userPassword" required>
+              <input formControlName="userPassword" name= "password" type="password" class="form-control form-control-lg" id="userPassword" required>
             </div>
           </form>
           </section>
   
-          <button (click)="login()" mat-raised-button color="primary" class="btn-login">LOG IN</button>
+          <button (click)="login()" mat-raised-button color="warn" class="btn-login">LOG IN</button>
         </div>
       </div>
     </div>

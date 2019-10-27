@@ -5,7 +5,7 @@
 .cart-name {
   font-size: 5rem;
   letter-spacing: .5rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .btn-product {
@@ -16,10 +16,31 @@
   color: white;
 }
 
-td {
+td{
   text-align: center;
 }
 
+.table-header {
+  background-color: #7c0a02;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.table{
+  border-collapse: separate;
+  border-spacing:0 20px;
+}
+.table-row{
+  background-color: #ffffff;
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+
 .cross-icon{
-  color: #f0134d;
+  color: #7c0a02;
+}
+
+.cross-icon:hover{
+  color: #d35656;
 }

@@ -3,9 +3,10 @@
   <div class="row">
       <div class="col-md-10">
         <h1 class="cart-name">Shopping Cart</h1>
+        <hr>
       </div>
       <div class="col-md">
-        <button routerLink="/product-list" (click) = "completeOnlineOrder()" mat-raised-button color="primary"  class="btn-product">Checkout</button>
+        <button routerLink="/product-list" (click) = "completeOnlineOrder()" mat-raised-button color="warn"  class="btn-product">Checkout</button>
       </div>
   </div>
 </section>
@@ -15,6 +16,15 @@
     <div class="col">
       <div *ngIf="cartListObservable$ | async as cartItem">
       <table class="table table-bordered">
+          <thead class="table-header">
+              <tr class="text-center">
+                <th scope="col"><h3>CATEGORY</h3></th>
+                <th scope="col"><h3>NAME</h3></th>
+                <th scope="col"><h3>PRICE</h3></th>
+                <th scope="col"><h3>Quantity</h3></th>
+                <th scope="col"><h3>Remove</h3></th>
+              </tr>
+            </thead>
         <ng-container *ngFor="let cartItem of cartList; let i=index">
           <tr class="text-align-center">
             <td>

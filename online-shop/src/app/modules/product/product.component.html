@@ -9,7 +9,7 @@
         <button routerLink="/product-list" disableIfNotCustomer (click) = "addProductToCart()" class="btn text-white btn-lg  btn-product-add"><i class="fa fa-plus"></i></button>
       </div>
       <div class="col">
-        <button routerLink="/edit-product/" disableIfNotAdmin (click)="goToProductEdit(i, currentProduct)" class="btn text-white btn-lg  btn-product-edit">Edit</button>
+        <button  routerLink="/edit-product/" disableIfNotAdmin (click)="goToProductEdit(i, currentProduct)" class="btn text-white btn-lg  btn-product-edit">Edit</button>
       </div>
       <div class="col">
         <button (click) = "deleteProduct()" disableIfNotAdmin class="btn btn-lg text-white btn-product-delete">Delete</button>
@@ -24,7 +24,7 @@
         <tbody>
         <tr>
           <th scope="row">
-            <h3>Name</h3>
+            <h2>Name</h2>
           <th>
           <td>
             {{currentProduct.name}}
@@ -32,7 +32,7 @@
         </tr>
         <tr>
           <th scope="row">
-            <h3>Category</h3>
+            <h2>Category</h2>
           <th>
           <td>
             {{currentProduct.category}}
@@ -40,7 +40,7 @@
         </tr>
         <tr>
           <th scope="row">
-            <h3>Price</h3>
+            <h2>Price</h2>
           <th>
           <td>
             {{currentProduct.price}}
@@ -48,7 +48,7 @@
         </tr>
         <tr>
           <th scope="row">
-            <h3>Description</h3>
+            <h2>Description</h2>
           <th>
           <td>
             {{currentProduct.description}}

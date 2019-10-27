@@ -19,12 +19,12 @@ describe('user to product details', function () {
 
     it('when user browses to our app he should be redirected to the login screen', () => {
       shopPage.navigateTo();
-      expect(shopPage.getPageTitleText()).toEqual('Sign In');
+      expect(shopPage.getPageTitleText()).toEqual('SIGN IN');
     });
 
     it('when login is successful — he should redirect to the product list page', () => {
       shopPage.navigateTo();
-      expect(shopPage.getPageTitleText()).toEqual('Sign In');
+      expect(shopPage.getPageTitleText()).toEqual('SIGN IN');
       
       authPage.navigateTo();
       authPage.fillCredentials();

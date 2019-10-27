@@ -7,7 +7,7 @@ export class OnlineShopPage {
   }
 
   getPageTitleText() {
-    return element(by.css('app-root h5')).getText();
+    return element(by.css('app-root h1')).getText();
   }
 
 }

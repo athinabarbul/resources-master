@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "webdriver-update": "webdriver-manager update"
+    "webdriver-update": "webdriver-manager update",
+    "int:extract": "ng xi18n"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +38,7 @@
     "hammerjs": "^2.0.8",
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
+    "normalizr": "^3.4.1",
     "popper.js": "^1.15.0",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.3",

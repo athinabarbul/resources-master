@@ -1,21 +1,27 @@
 .login-card{
     margin-top: 15rem;
     margin: 15rem auto;
-  }
+}
   
-  .hr-card{
-    border: 2px solid #9852f9;
-  }
+.hr-card{
+    border: 2px solid #7c0a02;
+}
   
-  .login-buttons{
+.login-buttons{
     margin: 8rem 5rem;
-  }
+}
   
-  .btn-login{
+.btn-login{
     padding: .5rem;
     font-size: 2.5rem;
     text-align: center;
     width: 100%;
     color: white;
-  }
-  
+}
+
+.image-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
