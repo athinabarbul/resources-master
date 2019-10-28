@@ -42,8 +42,7 @@ export class AddProductComponent implements OnInit {
    const id= this.productService.lastId;
       this.productService.newProduct={id,... this.addProductForm.value};
       
-      this.store.dispatch(new ProductsActions.AddNewProduct(this.productService.newProduct));
-      this.productService.addProduct(); 
+      this.productService.addNewProduct(); 
       this.router.navigate(['/product-list']);
 
   }

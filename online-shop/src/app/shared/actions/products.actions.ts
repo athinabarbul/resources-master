@@ -5,7 +5,9 @@ export enum ActionTypes {
   LoadDataBegin = "[ProductsLoad] Load data begin products",
   LoadDataSuccess = "[ProductsLoad] Load data success products",
   LoadDataFailure = "[ProductsLoad] Load data failure products",
-  AddNewProduct = "[ProductNew] Adding new product",
+  AddNewProductBegin = "[ProductNew] Adding new product",
+  AddNewProductSuccess = "[ProductNew] Adding new product success",
+  AddNewProductFailure = "[ProductNew] Adding new product failure",
   DeleteProduct = "[DeleteProduct] Deleting product",
   UpdateProduct = "[UpdateProduct] Updating product"
 }
@@ -26,9 +28,19 @@ export class LoadDataFailure implements Action {
   constructor(public payload: { error: any }) {}
 }
 
-export class AddNewProduct implements Action{
-  readonly type = ActionTypes.AddNewProduct;
+export class AddNewProductBegin implements Action {
+  readonly type = ActionTypes.AddNewProductBegin;
+}
+
+export class AddNewProductSuccess implements Action{
+  readonly type = ActionTypes.AddNewProductSuccess;
   constructor(public payload: ProductModel){}
+}
+
+export class AddNewProductFailure implements Action {
+  readonly type = ActionTypes.AddNewProductFailure;
+
+  constructor(public payload: { error: any }) {}
 }
 
 export class UpdateProduct implements Action{
@@ -41,4 +53,4 @@ export class DeleteProduct implements Action{
   constructor(public payload:  number) {}
 }
 
-export type ActionsUnion = LoadDataBegin | LoadDataSuccess | LoadDataFailure | AddNewProduct | UpdateProduct | DeleteProduct;
+export type ActionsUnion = LoadDataBegin | LoadDataSuccess | LoadDataFailure | AddNewProductSuccess | AddNewProductBegin | AddNewProductFailure | UpdateProduct | DeleteProduct;

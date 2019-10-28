@@ -37,11 +37,11 @@ export class ProductService {
     return this.http.get<ProductModel>('http://localhost:3000/products/' + this.navigateToProductId);
   }
 
-  public addProduct(): void {
+  public addProduct(): Observable<ProductModel> {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
       
-     this.http.post<ProductModel>('http://localhost:3000/products',{
+     return this.http.post<ProductModel>('http://localhost:3000/products',{
       "id": this.newProduct.id,
       "name": this.newProduct.name,
       "category": this.newProduct.category,
@@ -49,18 +49,7 @@ export class ProductService {
       "price": this.newProduct.price,
       "description": this.newProduct.description
     },
-    { headers }).subscribe(
-      val => {
-        console.log("POST call successful value returned in body",
-          val);
-      },
-      response => {
-        console.log("POST call in error", response);
-      },
-      () => {
-        console.log("The POST observable is now completed.");
-      }
-    );  
+    { headers });  
 
   }
 
@@ -114,6 +103,10 @@ export class ProductService {
 
   getItems() {
     return this.store.select(getAllItems);
+  }
+
+  addNewProduct() {
+    this.store.dispatch(new ProductsActions.AddNewProductBegin());
   }
 
   loadSingleProduct() {

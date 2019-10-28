@@ -43,12 +43,28 @@ export const initialState: ProductsState = {
         };
       }
 
-      case fromProduct.ActionTypes.AddNewProduct:
+      case fromProduct.ActionTypes.AddNewProductBegin: {
+        return {
+          ...state,
+          loading: true,
+          error: null
+        };
+      }
+
+      case fromProduct.ActionTypes.AddNewProductSuccess:
         return{
           ...state,
           loading:null,
           items: [...state.items, action.payload]
         };
+
+        case fromProduct.ActionTypes.AddNewProductFailure: {
+          return {
+            ...state,
+            loading: false,
+            error: action.payload.error
+          };
+        }
 
         case fromProduct.ActionTypes.UpdateProduct:
            const product = state.items[action.payload.index];

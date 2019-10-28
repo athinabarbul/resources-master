@@ -7,6 +7,7 @@ import { of } from "rxjs";
 
 import { ProductService } from 'src/app/data/service/product-service/product.service';
 import * as ProductsActions from "../actions/products.actions";
+import { ProductModel } from 'src/app/data/schema/product-model';
 
 @Injectable()
 export class ProductsEffect {
@@ -23,7 +24,21 @@ export class ProductsEffect {
         )
       );
     })
-    
   );
+
+  @Effect()
+  addProduct$ = this.actions.pipe(
+    ofType(ProductsActions.ActionTypes.AddNewProductBegin),
+    switchMap(() => {
+      return this.productService.addProduct().pipe(
+        map(data => new ProductsActions.AddNewProductSuccess( this.productService.newProduct )),
+        catchError(error =>
+          of(new ProductsActions.AddNewProductFailure({ error: error }))
+        )
+      );
+    })
+  );
+
+  
 
 }
