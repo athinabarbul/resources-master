@@ -80,7 +80,15 @@ export const initialState: ProductsState = {
              items: updatedProductList
            };
 
-        case fromProduct.ActionTypes.DeleteProduct:
+        case fromProduct.ActionTypes.DeleteProductBegin: {
+            return {
+              ...state,
+              loading: true,
+              error: null
+            };
+          }
+
+        case fromProduct.ActionTypes.DeleteProductSuccess:
           return {
             ...state,
             items: state.items.filter((ig, igIndex) => {
@@ -88,6 +96,13 @@ export const initialState: ProductsState = {
             })
           }
 
+        case fromProduct.ActionTypes.DeleteProductFailure: {
+            return {
+              ...state,
+              loading: false,
+              error: action.payload.error
+            };
+          }
   
       default: {
         return state;

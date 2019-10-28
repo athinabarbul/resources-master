@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import {  HttpClient  } from "@angular/common/http";
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs';
@@ -10,7 +9,6 @@ import { Store } from '@ngrx/store';
 import { ProductModel } from '../../data/schema/product-model';
 import { CartService } from '../../data/service/cart-service/cart.service';
 import { ProductService } from '../../data/service/product-service/product.service';
-import * as ProductsActions from "../../shared/actions/products.actions";
 import { CartItemModel } from 'src/app/data/schema/cart-item-model';
 import * as CartActions from "../../shared/actions/cart.actions";
 
@@ -27,9 +25,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   id: number;
   
 
-  constructor(private httpClient: HttpClient, private route: ActivatedRoute, private productService: ProductService,
+  constructor(private productService: ProductService,
     private cartService: CartService, private router: Router,
-    private store: Store<{fromProducts: {products: ProductModel[]}}>,
     private storeCart: Store<{fromCart: {cartItem: CartItemModel[]}}>) { }
 
   ngOnInit() {
@@ -49,8 +46,7 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   deleteProduct(): void {
     this.productService.deletedProductId = this.currentProduct.id;
-    this.store.dispatch(new ProductsActions.DeleteProduct(this.productService.deletedProductId));
-    this.productService.deleteProduct();
+    this.productService.deleteDProduct();
     this.router.navigate(['/product-list']);
   }
 

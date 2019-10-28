@@ -3,11 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Store } from '@ngrx/store';
-
-import { ProductModel } from '../../data/schema/product-model';
 import { ProductService } from '../../data/service/product-service/product.service';
-import * as ProductsActions from "../../shared/actions/products.actions";
 
 @Component({
   selector: 'app-add-product',
@@ -20,8 +16,7 @@ export class AddProductComponent implements OnInit {
   id: number;
   
   constructor(private fb: FormBuilder, private http: HttpClient,
-     private router: Router, private productService:ProductService,
-     private store: Store<{fromProducts: {products: ProductModel[]}}>) { }
+     private router: Router, private productService:ProductService) { }
 
   ngOnInit() {
     this.createForm();

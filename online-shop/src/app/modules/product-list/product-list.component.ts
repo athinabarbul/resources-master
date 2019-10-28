@@ -40,6 +40,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
 
   goToProductDetails(i: number): void {
   this.productService.navigateToProductId = this.listOfProducts[i].id;
+  this.productService.deleteProductIndex = i;
   this.productService.loadSingleProduct();
   this.router.navigate(['/product/' + this.productService.navigateToProductId]);
   }

@@ -23,6 +23,7 @@ export class ProductService {
   newProduct: ProductModel;
   updatedProduct: ProductModel;
   deletedProductId: number;
+  deleteProductIndex: number;
   lastId: number;
   navigateToProductId: number;
 
@@ -83,13 +84,8 @@ export class ProductService {
       );
   }
 
-  deleteProduct(): void {
-    this.http.delete('http://localhost:3000/products/' + this.deletedProductId).subscribe(response => {
-      console.log("deleted");
-      this.load();
-    }, (error) => {
-      console.log("nono deleted");
-    });
+  deleteProduct(): Observable<any> {
+    return this.http.delete('http://localhost:3000/products/' + this.deletedProductId);
   }
 
 
@@ -108,6 +104,11 @@ export class ProductService {
   addNewProduct() {
     this.store.dispatch(new ProductsActions.AddNewProductBegin());
   }
+
+  deleteDProduct() {
+    this.store.dispatch(new ProductsActions.DeleteProductBegin());
+  }
+
 
   loadSingleProduct() {
     this.store.dispatch(new ProductActions.LoadProductDataBegin());
