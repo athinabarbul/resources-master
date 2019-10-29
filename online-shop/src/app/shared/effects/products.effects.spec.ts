@@ -25,7 +25,25 @@ describe('ProductsEffect', () => {
             useValue: {
               getProducts: jasmine.createSpy(),
               addProduct: jasmine.createSpy(),
-              deleteProduct: jasmine.createSpy()
+              newProduct: {
+                "id":51,
+                "name":"Sony Vaio",
+                "category":"Laptops",
+                "image":"https://cdn.shopify.com/s/files/1/0225/2590/2923/products/vaio-s13-main-product-image-min_1000x.png?v=1562349830",
+                "price":1249,
+                "description":"Sony Vaio with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro"
+              },
+              deleteProduct: jasmine.createSpy(),
+              deletedProductId: 7,
+              updateProduct: jasmine.createSpy(),
+              updatedProduct: {
+                "id":7,
+                "name":"Sony Vaio",
+                "category":"Laptops",
+                "image":"https://cdn.shopify.com/s/files/1/0225/2590/2923/products/vaio-s13-main-product-image-min_1000x.png?v=1562349830",
+                "price":1249,
+                "description":"Sony Vaio with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro"
+              }
             }
           }
         ]
@@ -114,14 +132,14 @@ describe('ProductsEffect', () => {
     describe('[DeleteProduct] Deleting product begin', () => {
       
       it('should return a stream of a deleted product', () => {
-        const productID = 7;
+        const deletedProductId = 7;
 
         const action = new DeleteProductBegin();
-        const outcome = new DeleteProductSuccess( productID );
+        const outcome = new DeleteProductSuccess( deletedProductId );
 
         actions = hot('-a', { a: action });        
 
-        const response = cold('-a|', { a: productID });       
+        const response = cold('-a|', { a: deletedProductId });       
         productsService.deleteProduct.and.returnValue(response);        
 
         const expected = cold('--b', { b: outcome });
@@ -146,9 +164,10 @@ describe('ProductsEffect', () => {
     describe('[UpdateProduct] Updating product', () => {
       
       it('should return a stream of an updated product', () => {
+        
         const productID = 7;
         const updatedProduct: ProductModel = {       
-          "id":51,
+          "id":7,
           "name":"Sony Vaio",
           "category":"Laptops",
           "image":"https://cdn.shopify.com/s/files/1/0225/2590/2923/products/vaio-s13-main-product-image-min_1000x.png?v=1562349830",
