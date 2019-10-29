@@ -34,7 +34,7 @@ describe('ProductsEffect', () => {
                 "description":"Sony Vaio with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro"
               },
               deleteProduct: jasmine.createSpy(),
-              deletedProductId: 7,
+              deleteProductIndex: 7,
               updateProduct: jasmine.createSpy(),
               updatedProduct: {
                 "id":7,
@@ -92,15 +92,15 @@ describe('ProductsEffect', () => {
     });
 
     describe('[ProductNew] Adding new product', () => {
-      
+      const newProduct: ProductModel = {       
+        "id":51,
+        "name":"Sony Vaio",
+        "category":"Laptops",
+        "image":"https://cdn.shopify.com/s/files/1/0225/2590/2923/products/vaio-s13-main-product-image-min_1000x.png?v=1562349830",
+        "price":1249,
+        "description":"Sony Vaio with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro" };
       it('should return a stream with a new product added to the list', () => {
-        const newProduct: ProductModel = {       
-            "id":51,
-            "name":"Sony Vaio",
-            "category":"Laptops",
-            "image":"https://cdn.shopify.com/s/files/1/0225/2590/2923/products/vaio-s13-main-product-image-min_1000x.png?v=1562349830",
-            "price":1249,
-            "description":"Sony Vaio with 2,80 GHz quad core, 17\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro" };
+        
 
         const action = new AddNewProductBegin();
         const outcome = new AddNewProductSuccess( newProduct );
