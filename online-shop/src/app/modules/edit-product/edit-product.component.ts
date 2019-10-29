@@ -71,12 +71,8 @@ export class EditProductComponent implements OnInit {
       this.editProductForm.value.description ? this.editProductForm.value.description : this.currentProduct.description
     );
 
-    this.store.dispatch(new ProductsActions.UpdateProduct({
-      index: +this.id,
-      product: this.productService.updatedProduct
-    }));
-    this.productService.updateProduct();
-    this.router.navigate(['/product/'+ this.id]);
+    this.productService.updateSingleProduct();
+    this.router.navigate(['/product-list']);
 
   }
 

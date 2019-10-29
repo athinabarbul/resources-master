@@ -1,5 +1,5 @@
 import { reducer, initialState } from "./products.reducer";
-import { AddNewProduct, UpdateProduct, LoadDataBegin, LoadDataSuccess, LoadDataFailure, DeleteProduct } from '../actions/products.actions';
+import { AddNewProductSuccess, LoadDataBegin, LoadDataSuccess, LoadDataFailure, DeleteProductSuccess, AddNewProductBegin, AddNewProductFailure, DeleteProductFailure, DeleteProductBegin, UpdateProductSuccess, UpdateProductFailure, UpdateProductBegin } from '../actions/products.actions';
 import { ProductModel } from 'src/app/data/schema/product-model';
 
 
@@ -15,18 +15,45 @@ import { ProductModel } from 'src/app/data/schema/product-model';
     });
 
     describe('[ProductNew] Adding new product', () => {
+      it('should toggle add new product state', () => {
+        const action = new AddNewProductBegin();
+        const result = reducer(initialState, action);
+    
+        expect(result).toEqual({
+          ...initialState,
+          error: null,
+          loading: true
+        });
+      });
+    });
+
+    describe('[ProductNew] Adding new product success', () => {
       let mockProduct = new ProductModel(1,
             "Notebook Basic 17", "Laptops", 1248, "https://sapui5.hana.ondemand.com/test-resources/sap/ui/documentation/sdk/images/HT-1001.jpg",
             "Laptop");
 
       it('should add a product to state', () => {
-        const action = new AddNewProduct( mockProduct );
+        const action = new AddNewProductSuccess( mockProduct );
         const result = reducer(initialState, action);
   
         expect(result).toEqual({
           items: [action.payload],
           error: null,
           loading: null
+        });
+      });
+    });
+
+    describe('[ProductNew] Adding new product failure', () => {
+      it('should update error in state', () => {
+        const error = new Error();
+        const action = new AddNewProductFailure({ error });
+        const result = reducer(initialState, action);
+    
+        expect(result).toEqual({
+          ...initialState,
+          error,
+          loading: false
         });
       });
     });
@@ -80,6 +107,19 @@ import { ProductModel } from 'src/app/data/schema/product-model';
       });
 
       describe('[UpdateProduct] Updating product', () => {
+        it('should toggle updating state', () => {
+          const action = new UpdateProductBegin();
+          const result = reducer(initialState, action);
+      
+          expect(result).toEqual({
+            ...initialState,
+            error: null,
+            loading: true
+          });
+        });
+      });
+
+      describe('[UpdateProduct] Updating product', () => {
 
         let mockIndex = 1;
         let mockProduct = new ProductModel(1,
@@ -87,7 +127,7 @@ import { ProductModel } from 'src/app/data/schema/product-model';
             "Laptop");
 
         it('should update a product from state', () => {
-          const action = new UpdateProduct( {index: mockIndex, product: mockProduct} );
+          const action = new UpdateProductSuccess( {index: mockIndex, product: mockProduct} );
           const product = initialState[action.payload.index];
           const updatedProduct ={
             ...product,
@@ -102,13 +142,42 @@ import { ProductModel } from 'src/app/data/schema/product-model';
             items: updatedProductList
           });
         });
+
+        describe('[UpdateProduct] Updating product failure', () => {
+          it('should update error in state', () => {
+            const error = new Error();
+            const action = new UpdateProductFailure({ error });
+            const result = reducer(initialState, action);
+        
+            expect(result).toEqual({
+              ...initialState,
+              error,
+              loading: false
+            });
+          });
+        });
       });
+
+
 
       describe('[DeleteProduct] Deleting product', () => {
         let mockIndex = 1;
 
+        describe('[DeleteProduct] Deleting product begin', () => {
+          it('should toggle delete product state', () => {
+            const action = new DeleteProductBegin();
+            const result = reducer(initialState, action);
+        
+            expect(result).toEqual({
+              ...initialState,
+              error: null,
+              loading: true
+            });
+          });
+        });
+
         it('should delete a product from the state', () => {
-          const action = new DeleteProduct( mockIndex );
+          const action = new DeleteProductSuccess( mockIndex );
           const result = reducer(initialState, action);
     
           expect(result).toEqual({
@@ -117,4 +186,19 @@ import { ProductModel } from 'src/app/data/schema/product-model';
           });
         });
       });
+
+      describe('[DeleteProduct] Deleting product failure', () => {
+        it('should update error in state', () => {
+          const error = new Error();
+          const action = new DeleteProductFailure({ error });
+          const result = reducer(initialState, action);
+      
+          expect(result).toEqual({
+            ...initialState,
+            error,
+            loading: false
+          });
+        });
+      });
+
   });

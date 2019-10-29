@@ -54,11 +54,11 @@ export class ProductService {
 
   }
 
-  public updateProduct(): void {
+  public updateProduct(): Observable<any> {
     const headers = new HttpHeaders()
       .set("Content-Type", "application/json");
 
-    this.http.put('http://localhost:3000/products/' + this.updatedProduct.id,
+    return this.http.put('http://localhost:3000/products/' + this.updatedProduct.id,
       {
         "id": this.updatedProduct.id,
         "name":  this.updatedProduct.name,
@@ -67,21 +67,7 @@ export class ProductService {
         "image": this.updatedProduct.image,
         "description": this.updatedProduct.description
       },
-      { headers })
-      .subscribe(
-        val => {
-          this.loadSingleProduct();
-          console.log("PUT call successful value returned in body",
-            val);
-            
-        },
-        response => {
-          console.log("PUT call in error", response);
-        },
-        () => {
-          console.log("The PUT observable is now completed.");
-        }
-      );
+      { headers });
   }
 
   deleteProduct(): Observable<any> {
@@ -107,6 +93,10 @@ export class ProductService {
 
   deleteDProduct() {
     this.store.dispatch(new ProductsActions.DeleteProductBegin());
+  }
+
+  updateSingleProduct(){
+    this.store.dispatch(new ProductsActions.UpdateProductBegin());
   }
 
 

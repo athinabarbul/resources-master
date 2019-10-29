@@ -8,6 +8,7 @@ import { of } from "rxjs";
 import { ProductService } from 'src/app/data/service/product-service/product.service';
 import * as ProductsActions from "../actions/products.actions";
 import { ProductModel } from 'src/app/data/schema/product-model';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable()
 export class ProductsEffect {
@@ -40,13 +41,26 @@ export class ProductsEffect {
   );
 
   @Effect()
-  deteleProduct$ = this.actions.pipe(
+  deleteProduct$ = this.actions.pipe(
     ofType(ProductsActions.ActionTypes.DeleteProductBegin),
     switchMap(() => {
       return this.productService.deleteProduct().pipe(
         map(data => new ProductsActions.DeleteProductSuccess( this.productService.deleteProductIndex )),
         catchError(error =>
           of(new ProductsActions.DeleteProductFailure({ error: error }))
+        )
+      );
+    })
+  ); 
+  
+  @Effect()
+  updateProduct$ = this.actions.pipe(
+    ofType(ProductsActions.ActionTypes.UpdateProductBegin),
+    switchMap(() => {
+      return this.productService.updateProduct().pipe(
+        map(data => new ProductsActions.UpdateProductSuccess( {index: this.productService.updatedProduct.id, product: this.productService.updatedProduct} )),
+        catchError(error =>
+          of(new ProductsActions.UpdateProductFailure({ error: error }))
         )
       );
     })

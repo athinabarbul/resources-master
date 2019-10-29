@@ -66,7 +66,15 @@ export const initialState: ProductsState = {
           };
         }
 
-        case fromProduct.ActionTypes.UpdateProduct:
+        case fromProduct.ActionTypes.UpdateProductBegin: {
+          return {
+            ...state,
+            loading: true,
+            error: null
+          };
+        }
+
+        case fromProduct.ActionTypes.UpdateProductSuccess:
            const product = state.items[action.payload.index];
            const updatedProduct ={
              ...product,
@@ -79,6 +87,14 @@ export const initialState: ProductsState = {
              ...state,
              items: updatedProductList
            };
+
+           case fromProduct.ActionTypes.UpdateProductFailure: {
+            return {
+              ...state,
+              loading: false,
+              error: action.payload.error
+            };
+          }
 
         case fromProduct.ActionTypes.DeleteProductBegin: {
             return {
